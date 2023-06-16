@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+
 
 function ContactUs() 
 {
@@ -23,7 +23,7 @@ function ContactUs()
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/contacts",
+        "http://localhost:3100/contacts",
         contactMessage
       );
 
