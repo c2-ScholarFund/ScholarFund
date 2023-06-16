@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -7,39 +7,55 @@ export default function SignUp() {
     username: "",
     email: "",
     password: "",
-    role: ""
+    role: "",
   });
+  const passwordInputRef = useRef(null);
+  const passErrorRef = useRef(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-        const response = await fetch("http://localhost:3100/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(formData)
-        });
-    
-        if (response.ok) {
-          const data = await response.json();
-          // Store the token in localStorage
-          localStorage.setItem("token", data.token);
-          // Handle the response data as needed
-          console.log(data);
-        } else {
-          // Handle the error case
-          console.error("Registration failed");
-        }
-      } catch (error) {
-        console.error("An error occurred:", error);
+      // Password validation
+      const passwordRegex =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+      if (!passwordRegex.test(passwordInputRef.current.value)) {
+        passwordInputRef.current.classList.add("input-error");
+        passErrorRef.current.textContent =
+          "Password should have at least 8 characters with at least 1 number, uppercase, and special characters.";
+        return;
+      } else {
+        passwordInputRef.current.classList.remove("input-error");
+        passErrorRef.current.textContent = "";
       }
-    };
+
+      const response = await fetch("http://localhost:3100/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        // Store the token in localStorage
+        localStorage.setItem("token", data.token);
+        // Handle the response data as needed
+        console.log(data);
+      } else {
+        // Handle the error case
+        console.error("Registration failed");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
+
   const handleChange = (e) => {
     setFormData((prevData) => ({
       ...prevData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -51,15 +67,12 @@ export default function SignUp() {
           className="w-1/2 bg-cover md:block hidden"
           style={{
             backgroundImage:
-              "url(https://images.unsplash.com/photo-1520243947988-b7b79f7873e9?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NDd8fGJsYWNrJTIwZm9yZXN0fGVufDB8fDB8eWVsbG93&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60)"
+              "url(https://images.unsplash.com/photo-1619279302118-43033660826a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80)",
           }}
         />
-        {/* <div class="bg-no-repeat bg-right bg-cover max-w-max max-h-8 h-12 overflow-hidden">
-      <img src="log_in.webp" alt="hey">
-  </div> */}
         <div className="md:w-1/2 max-w-lg mx-auto my-24 px-4 py-5 shadow-none">
           <div className="text-left p-0 font-sans">
-            <h1 className=" text-gray-800 text-3xl font-medium">
+            <h1 className=" text-gray-800 text-3xl font-medium text-center">
               Create an account for free
             </h1>
             <br />
@@ -76,9 +89,9 @@ export default function SignUp() {
                   checked={formData.role === "donor"}
                   onChange={handleChange}
                 />
-                Donor
+                <span className="ml-2">Donor</span>
               </label>
-              <label htmlFor="student">
+              <label htmlFor="student" className="ml-4">
                 <input
                   type="radio"
                   id="student"
@@ -87,7 +100,7 @@ export default function SignUp() {
                   checked={formData.role === "student"}
                   onChange={handleChange}
                 />
-                Student
+                <span className="ml-2">Student</span>
               </label>
             </div>
           </div>
@@ -113,9 +126,8 @@ export default function SignUp() {
               />
             </div>
             <div className="mt-5">
-              {/* <label for="email" class="sc-bqyKva ePvcBv">Email</label> */}
               <input
-                type="text"
+                type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
@@ -139,41 +151,17 @@ export default function SignUp() {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
+                ref={passwordInputRef}
                 className="block w-full p-2 border rounded border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent"
                 placeholder="Password"
               />
-            </div>
-            <div className="mt-6 block p-5 text-sm md:font-sans text-xs text-gray-800">
-              <input
-                type="checkbox"
-                className="inline-block border-0"
-              />
-              <span display="inline" className="">
-                By creating an account you are agreeing to our
-                <a
-                  className=""
-                  href="/s/terms"
-                  target="_blank"
-                  data-test="Link"
-                >
-                  <span className="underline ">Terms and Conditions</span>{" "}
-                </a>{" "}
-                and
-                <a
-                  className=""
-                  href="/s/privacy"
-                  target="_blank"
-                  data-test="Link"
-                >
-                  <span className="underline">Privacy Policy</span>{" "}
-                </a>
-              </span>
+              <div ref={passErrorRef} className="text-red-500 mt-2"></div>
             </div>
             <div className="mt-10">
-              <input 
-                type="Sign Up"
-                defaultValue="Sign up"
-                className="py-3 bg-green-500 text-white w-full rounded hover:bg-green-600 text-center"
+              <input
+                type="submit"
+                value="Sign up"
+                className="py-3 text-white w-full rounded hover:bg-green-600 text-center" style={{backgroundColor:"#252B3F"}}
               />
             </div>
           </form>
@@ -184,7 +172,6 @@ export default function SignUp() {
           </a>
         </div>
       </div>
-
     </>
   );
 }
