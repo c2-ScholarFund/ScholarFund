@@ -1,4 +1,3 @@
-import React from 'react'
 import education from "../assets/images/education.jpg";
 import profilePict from "../assets/images/profilePict.jpg";
 import Edit from "../components/EditInfo";
