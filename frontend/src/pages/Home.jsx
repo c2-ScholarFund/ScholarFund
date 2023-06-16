@@ -325,13 +325,13 @@ export default function Home() {
         <svg
           id="visual"
           viewBox="0 0 1950 100"
-          width="1950"
+          width={"100%"}
           height="100"
           xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           version="1.1"
         >
-          <rect x="0" y="0" width="1950" height="100" fill="#252B3F"></rect>
+          <rect x="0" y="-40" width="100%" height="100" fill="#252B3F"></rect>
           <path
             d="M0 15L1950 77L1950 101L0 101Z"
             fill="#CF1A45"
@@ -401,13 +401,13 @@ export default function Home() {
         <svg
           id="visual"
           viewBox="0 0 1950 100"
-          width="1950"
+          width="100%"
           height="100"
           xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           version="1.1"
         >
-          <rect x="0" y="0" width="1950" height="100" fill="#252B3F"></rect>
+          <rect x="0" y="40" width="100%" height="100" fill="#252B3F"></rect>
           <path
             d="M0 83L1950 21L1950 0L0 0Z"
             fill="#CF1A45"
