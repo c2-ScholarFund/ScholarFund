@@ -4,21 +4,26 @@ import Footer from "./components/Footer";
 import Error10 from "./pages/Error10 ";
 import Home from "./pages/Home";
 import CardStudent from "./components/CardStudent";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import Contactus from "./pages/Contactus";
 
 
 function App() {
   return (
-       // testing
+    // testing
     <BrowserRouter>
-    <Navbar/>
+      <Navbar />
       <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="*" element={<Error10/>} />
-      <Route path="Studant" element={<CardStudent/>} />
+        <Route path="/" element={<Home />} />
+        <Route path="login" element={<Login />} />
+        <Route path="sginup" element={<SignUp />} />
+        <Route path="Studant" element={<CardStudent />} />
+        <Route path="contactus" element={<Contactus />} />
+        <Route path="*" element={<Error10 />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </BrowserRouter>
-
   );
 }
 
