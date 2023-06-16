@@ -5,7 +5,7 @@ import Edit from "../components/EditInfo";
 import Inputs from "../components/History";
 
 
-const Component = () => {
+const DonarProfile = () => {
     return (
         <>
             <meta charSet="utf-8" />
@@ -116,4 +116,4 @@ const Component = () => {
     )
 }
 
-export default Component
+export default DonarProfile;
