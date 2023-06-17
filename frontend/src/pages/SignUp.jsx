@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -174,16 +175,20 @@ export default function SignUp() {
               />
             </div>
           </form>
-          <a className="" href="/login" data-test="Link">
+          <Link to="/login">
             <span className="block  p-5 text-center text-gray-800  text-xs ">
               Already have an account? Login
             </span>
+
+          </Link>
+
           </a>
           {showAlert && (
             <div className="mt-4 p-4 bg-red-200 text-red-800 rounded">
               The email address is already in use.
             </div>
           )}
+
         </div>
       </div>
     </>
