@@ -9,6 +9,7 @@ import SignUp from "./pages/SignUp";
 import Contactus from "./pages/Contactus";
 import AboutUs from "./pages/AboutUs";
 import DonarProfile from "./pages/DonarProfile";
+import Checkout from './pages/Checkout'
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="contactus" element={<Contactus />} />
         <Route path="AboutUs" element={<AboutUs />} />
         <Route path="DonarProfile" element={<DonarProfile />} />
+        <Route path="Checkout" element={<Checkout />} />
         <Route path="*" element={<Error10 />} />
       </Routes>
       <Footer />
