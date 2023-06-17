@@ -12,6 +12,7 @@ import AboutUs from "./pages/AboutUs";
 import DonarProfile from "./pages/DonarProfile";
 
 import EditProfile from "./components/EditProfile";
+import Students from "./pages/Students";
 
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
         <Route path="login" element={<Login />} />
 
         <Route path="sginup" element={<SignUp />} />
-        <Route path="Studant" element={<Studants />} />
+        <Route path="Studant" element={<Students />} />
 
         <Route path="contactus" element={<Contactus />} />
         <Route path="AboutUs" element={<AboutUs />} />
