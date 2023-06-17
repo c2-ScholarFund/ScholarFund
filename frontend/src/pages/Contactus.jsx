@@ -10,6 +10,7 @@ function ContactUs()
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
 
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -20,14 +21,14 @@ function ContactUs()
       phone,
       message,
     };
-
+    
     try {
       const response = await axios.post(
         "http://localhost:3100/contacts",
         contactMessage
       );
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         Swal.fire("Success", "Message sent successfully!", "success");
 
         setName("");
