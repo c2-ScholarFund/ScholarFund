@@ -4,25 +4,32 @@ import Footer from "./components/Footer";
 import Error10 from "./pages/Error10 ";
 import Home from "./pages/Home";
 import CardStudent from "./components/CardStudent";
-import EditProfile from "./components/EditProfile";
-import Component from "./pages/DonarProfile";
+
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import Contactus from "./pages/Contactus";
+import AboutUs from "./pages/AboutUs";
+import DonarProfile from "./pages/DonarProfile";
 
 
 function App() {
   return (
-       // testing
+    // testing
     <BrowserRouter>
-    <Navbar/>
+      <Navbar />
       <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="*" element={<Error10/>} />
-      <Route path="Studant" element={<CardStudent/>} />
-      <Route path="edit" element={<EditProfile/>} />
-      <Route path="profile" element={<Component/>} />
+        <Route path="/" element={<Home />} />
+        <Route path="login" element={<Login />} />
+        <Route path="SignUp" element={<SignUp />} />
+        <Route path="Studant" element={<CardStudent />} />
+        <Route path="contactus" element={<Contactus />} />
+        <Route path="AboutUs" element={<AboutUs />} />
+        <Route path="DonarProfile" element={<DonarProfile />} />
+        <Route path="*" element={<Error10 />} />
+          
       </Routes>
-      <Footer/>
+      <Footer />
     </BrowserRouter>
-
   );
 }
 

@@ -1,11 +1,12 @@
-import React from 'react'
 import education from "../assets/images/education.jpg";
 import profilePict from "../assets/images/profilePict.jpg";
 import Edit from "../components/EditInfo";
 import Inputs from "../components/History";
 import { Link } from 'react-router-dom';
+import Helpform from "../components/Helpform";
 
-const Component = () => {
+
+const DonarProfile = () => {
 
     return (
         <>
@@ -109,7 +110,10 @@ const Component = () => {
                             </div>
                         </div>
                     </footer>
-                    <Inputs />
+
+                   <Inputs />
+                   <Helpform />
+
                 </section>
             </main>
         </>
@@ -117,4 +121,4 @@ const Component = () => {
     )
 }
 
-export default Component
+export default DonarProfile;
