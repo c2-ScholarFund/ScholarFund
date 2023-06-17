@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -164,15 +165,16 @@ export default function SignUp() {
               <input
                 type="submit"
                 value="Sign up"
-                className="py-3 text-white w-full rounded hover:bg-green-600 text-center" style={{backgroundColor:"#252B3F"}}
+                className="py-3 text-white w-full rounded hover:bg-green-600 text-center"
+                style={{ backgroundColor: "#252B3F" }}
               />
             </div>
           </form>
-          <a className="" href="/login" data-test="Link">
+          <Link to="/login">
             <span className="block  p-5 text-center text-gray-800  text-xs ">
               Already have an account? Login
             </span>
-          </a>
+          </Link>
         </div>
       </div>
     </>
