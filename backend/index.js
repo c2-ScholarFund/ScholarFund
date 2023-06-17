@@ -5,7 +5,12 @@ const bodyParser = require('body-parser');
 const { MONGO_URL, connectionParams } = require("./src/config/config");
 const contactRoutes = require('./src/routes/contactRoutes');
 const stuproblemRoutes = require('./src/routes/stuproblemRoutes');
+
 const Data = require('./src/models/data'); // Import the Data model
+
+
+const userRoutes = require('./src/routes/userRoutes')
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -39,6 +44,13 @@ app.post('/api/data', (req, res) => {
 app.use('/contacts', contactRoutes);
 app.use('/prob', stuproblemRoutes);
 
+
 app.listen(3100, () => {
   console.log("Server running on port 3100");
 });
+
+ // Router
+ app.use('/contacts', contactRoutes);
+ app.use('/prob' , stuproblemRoutes);
+ app.use('/user' , userRoutes);
+

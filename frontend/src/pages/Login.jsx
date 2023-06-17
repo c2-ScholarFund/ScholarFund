@@ -1,21 +1,22 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const [formData, setFormData] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3100/login", {
+      const response = await fetch("http://localhost:3100/user/login", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
@@ -36,7 +37,7 @@ export default function Login() {
   const handleChange = (e) => {
     setFormData((prevData) => ({
       ...prevData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -48,7 +49,7 @@ export default function Login() {
           className="w-1/2 bg-cover md:block hidden"
           style={{
             backgroundImage:
-              "url(https://images.unsplash.com/photo-1520243947988-b7b79f7873e9?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NDd8fGJsYWNrJTIwZm9yZXN0fGVufDB8fDB8eWVsbG93&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60)",
+              "url(https://images.unsplash.com/photo-1619279148778-fbccc09f36b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80)",
           }}
         />
         <div className="md:w-1/2 max-w-lg mx-auto my-24 px-4 py-5 shadow-none">
@@ -88,14 +89,15 @@ export default function Login() {
                 type="submit"
                 value="Login"
                 className="py-3 bg-green-500 text-white w-full rounded hover:bg-green-600 text-center"
+                style={{ backgroundColor: "#252B3F" }}
               />
             </div>
           </form>
-          <a className="" href="/SignUp" data-test="Link">
+          <Link to="/sginup">
             <span className="block  p-5 text-center text-gray-800  text-xs">
-              Don &#39;t have an account? SignUp
+              Don't have an account? SignUp
             </span>
-          </a>
+          </Link>
         </div>
       </div>
     </>
