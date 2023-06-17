@@ -34,6 +34,14 @@ const problemSchema = new Schema({
     type: String,
     required: true
   },
+  amount: {
+    type: Number,
+    required: true
+  },
+  raised: {
+    type: Number,
+    
+  },
   images: {
     type: [Buffer],
     required: true

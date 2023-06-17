@@ -1,5 +1,6 @@
-import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+
+import  { useState, useRef } from "react";
+import {  useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ export default function SignUp() {
     password: "",
     role: "",
   });
+  const navigate = useNavigate();
   const passwordInputRef = useRef(null);
   const passErrorRef = useRef(null);
   const [showAlert, setShowAlert] = useState(false);
@@ -43,6 +45,8 @@ export default function SignUp() {
         const data = await response.json();
         // Store the token in localStorage
         localStorage.setItem("token", data.token);
+        navigate("/");
+
         // Handle the response data as needed
         console.log(data);
       } else if (response.status === 409) {
