@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Login() {
   const [formData, setFormData] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
   const handleSubmit = async (e) => {
@@ -14,9 +14,9 @@ export default function Login() {
       const response = await fetch("http://localhost:3100/user/login", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
@@ -37,7 +37,7 @@ export default function Login() {
   const handleChange = (e) => {
     setFormData((prevData) => ({
       ...prevData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 

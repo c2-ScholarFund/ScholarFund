@@ -12,10 +12,11 @@ export default function SignUp() {
   });
   const passwordInputRef = useRef(null);
   const passErrorRef = useRef(null);
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       // Password validation
       const passwordRegex =
@@ -29,10 +30,7 @@ export default function SignUp() {
         passwordInputRef.current.classList.remove("input-error");
         passErrorRef.current.textContent = "";
       }
-      // const existingUser = await User.findOne({ email });
-      // if (existingUser) {
-      //   return res.status(401).json('User already exists. Please log in.');
-      // }
+  
       const response = await fetch("http://localhost:3100/user/signup", {
         method: "POST",
         headers: {
@@ -40,29 +38,36 @@ export default function SignUp() {
         },
         body: JSON.stringify(formData),
       });
-
+  
       if (response.ok) {
         const data = await response.json();
         // Store the token in localStorage
         localStorage.setItem("token", data.token);
         // Handle the response data as needed
         console.log(data);
+      } else if (response.status === 409) {
+        setShowAlert(true);
+        passErrorRef.current.textContent = "The email address is already in use.";
       } else {
-        // Handle the error case
+        setShowAlert(true);
         console.error("Registration failed");
       }
     } catch (error) {
       console.error("An error occurred:", error);
     }
   };
+  
 
   const handleChange = (e) => {
+    if (e.target.name === "email" && showAlert) {
+      setShowAlert(false);
+    }
+  
     setFormData((prevData) => ({
       ...prevData,
       [e.target.name]: e.target.value,
     }));
   };
-
   return (
     <>
       {/* url('/img/hero-pattern.svg') */}
@@ -76,7 +81,7 @@ export default function SignUp() {
         />
         <div className="md:w-1/2 max-w-lg mx-auto my-24 px-4 py-5 shadow-none">
           <div className="text-left p-0 font-sans">
-            <h1 className=" text-gray-800 text-3xl font-medium text-center">
+            <h1 className="text-gray-800 text-3xl font-medium text-center">
               Create an account for free
             </h1>
             <br />
@@ -174,7 +179,16 @@ export default function SignUp() {
             <span className="block  p-5 text-center text-gray-800  text-xs ">
               Already have an account? Login
             </span>
+
           </Link>
+
+          </a>
+          {showAlert && (
+            <div className="mt-4 p-4 bg-red-200 text-red-800 rounded">
+              The email address is already in use.
+            </div>
+          )}
+
         </div>
       </div>
     </>
