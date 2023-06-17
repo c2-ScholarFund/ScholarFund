@@ -4,13 +4,14 @@ import Footer from "./components/Footer";
 import Error10 from "./pages/Error10 ";
 import Home from "./pages/Home";
 
+
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Contactus from "./pages/Contactus";
 import AboutUs from "./pages/AboutUs";
 import DonarProfile from "./pages/DonarProfile";
-import Studants from "./pages/Studants";
-import Programs from "./pages/Programs";
+
+import EditProfile from "./components/EditProfile";
 
 
 function App() {
@@ -31,7 +32,9 @@ function App() {
         <Route path="contactus" element={<Contactus />} />
         <Route path="AboutUs" element={<AboutUs />} />
         <Route path="DonarProfile" element={<DonarProfile />} />
+
         <Route path="ourPrograms" element={<Programs />} />
+
         <Route path="*" element={<Error10 />} />
           
       </Routes>

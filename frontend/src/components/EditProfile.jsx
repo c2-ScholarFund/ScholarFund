@@ -5,7 +5,7 @@ const EditProfile = () => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate('/profile');
+        navigate('/DonarProfile');
     };
 
     return (
