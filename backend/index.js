@@ -6,13 +6,12 @@ const { MONGO_URL, connectionParams } = require("./src/config/config");
 const contactRoutes = require('./src/routes/contactRoutes');
 const stuproblemRoutes = require('./src/routes/stuproblemRoutes');
 
+const app = express();
 const Data = require('./src/models/data'); // Import the Data model
 
 
 const userRoutes = require('./src/routes/userRoutes')
-const bodyParser = require('body-parser');
 
-const app = express();
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
