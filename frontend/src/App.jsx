@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Error10 from "./pages/Error10 ";
 import Home from "./pages/Home";
 import CardStudent from "./components/CardStudent";
+
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Contactus from "./pages/Contactus";
@@ -25,6 +26,7 @@ function App() {
         <Route path="AboutUs" element={<AboutUs />} />
         <Route path="DonarProfile" element={<DonarProfile />} />
         <Route path="*" element={<Error10 />} />
+          
       </Routes>
       <Footer />
     </BrowserRouter>
