@@ -32,11 +32,9 @@ function App() {
         <Route path="contactus" element={<Contactus />} />
         <Route path="AboutUs" element={<AboutUs />} />
         <Route path="DonarProfile" element={<DonarProfile />} />
-
-        <Route path="ourPrograms" element={<Programs />} />
+        <Route path="edit" element={<EditProfile />} />
 
         <Route path="*" element={<Error10 />} />
-          
       </Routes>
       <Footer />
     </BrowserRouter>
