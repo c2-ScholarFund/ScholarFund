@@ -15,6 +15,7 @@ import EditProfile from "./components/EditProfile";
 import Students from "./pages/Students";
 
 
+
 function App() {
     const currentPath = window.location.pathname;
 
