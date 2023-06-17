@@ -1,32 +1,75 @@
-import { useState } from "react";
-import Logo from "../assets/images/logo.png";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
+import Logo from "../assets/images/logo.png";
+import jwtDecode from 'jwt-decode';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      // Decode the token to extract user information
+      const decodedToken = jwtDecode(token);
+      if (decodedToken) {
+        setUsername(decodedToken.username);
+        setIsLoggedIn(true);
+      }
+    }
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleLogout = () => {
+    // Remove the token from localStorage
+    localStorage.removeItem('token');
+
+    // Update the login status
+    setIsLoggedIn(false);
+  };
+
   return (
     <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-600">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        {/* Rest of the component code */}
-
-        <Link to="/" className="flex items-center">
-          <img src={Logo} className="h-12 mr-3" alt="Flowbite Logo" />
-        </Link>
+      <Link to="/" className="flex items-center">
+      <img src={Logo} className="h-12 mr-3" alt="Flowbite Logo" />
+    </Link>
         <div className="flex md:order-2">
-          <Link to="sginup">
-            <button
-              type="button"
-              className="text-white  focus:outline-none  font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0  "
-              style={{ backgroundColor: "#CF1A45" }}
-            >
-              Join Us
-            </button>
-          </Link>
+          {isLoggedIn ? (
+            <>
+              <div className="flex items-center mr-4">
+                {/* Render user profile icon here */}
+                <Link to="/DonarProfile#" className="flex items-center mr-4 text-gray-900 dark:text-gray-400">
+                {/* Render user profile icon here */}
+                <FaUser className="w-6 h-6 text-gray-900 dark:text-gray-400" />
+                
+              </Link>
+              </div>
+              <button
+                type="button"
+                className="text-white focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0"
+                style={{ backgroundColor: "#CF1A45" }}
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <Link to="sginup">
+              <button
+                type="button"
+                className="text-white focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0"
+                style={{ backgroundColor: "#CF1A45" }}
+              >
+                Join Us
+              </button>
+            </Link>
+          )}
           <button
             data-collapse-toggle="navbar-sticky"
             type="button"
@@ -61,7 +104,7 @@ export default function Navbar() {
             <li>
               <Link
                 to="/"
-                className="block py-2 pl-3 pr-4 text-gray-900  rounded md:bg-transparent md:text-red-600 md:p-0 md:dark:text-red-500"
+                className="block py-2 pl-3 pr-4 text-gray-900 rounded md:bg-transparent md:text-red-600 md:p-0 md:dark:text-red-500"
                 aria-current="page"
               >
                 Home
