@@ -10,6 +10,7 @@ import SignUp from "./pages/SignUp";
 import Contactus from "./pages/Contactus";
 import AboutUs from "./pages/AboutUs";
 import DonarProfile from "./pages/DonarProfile";
+import Checkout from './pages/Checkout'
 
 import EditProfile from "./components/EditProfile";
 import Students from "./pages/Students";
@@ -17,7 +18,7 @@ import Students from "./pages/Students";
 
 
 function App() {
-    const currentPath = window.location.pathname;
+  const currentPath = window.location.pathname;
 
   return (
     // testing
@@ -34,12 +35,13 @@ function App() {
         <Route path="contactus" element={<Contactus />} />
         <Route path="AboutUs" element={<AboutUs />} />
         <Route path="DonarProfile" element={<DonarProfile />} />
+        <Route path="Checkout" element={<Checkout />} />
         <Route path="edit" element={<EditProfile />} />
 
         <Route path="*" element={<Error10 />} />
-      </Routes>
+      </Routes >
       <Footer />
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
 
