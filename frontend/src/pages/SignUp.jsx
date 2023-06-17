@@ -182,7 +182,7 @@ export default function SignUp() {
 
           </Link>
 
-          </a>
+          
           {showAlert && (
             <div className="mt-4 p-4 bg-red-200 text-red-800 rounded">
               The email address is already in use.
