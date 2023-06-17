@@ -2,10 +2,12 @@ import education from "../assets/images/education.jpg";
 import profilePict from "../assets/images/profilePict.jpg";
 import Edit from "../components/EditInfo";
 import Inputs from "../components/History";
+import { Link } from 'react-router-dom';
 import Helpform from "../components/Helpform";
 
 
 const DonarProfile = () => {
+
     return (
         <>
             <meta charSet="utf-8" />
@@ -49,12 +51,12 @@ const DonarProfile = () => {
                                     </div>
                                     <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
                                         <div className="py-6 px-3 mt-32 sm:mt-0">
-                                            <button
+                                            <Link
+                                                to="/edit"
                                                 className="bg-red-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-6 py-4 rounded-full outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
-                                                type="button"
                                             >
                                                 Edit Profile
-                                            </button>
+                                            </Link>
                                         </div>
                                     </div>
                                     <div className="w-full lg:w-4/12 px-4 lg:order-1">
@@ -94,7 +96,7 @@ const DonarProfile = () => {
                                     </div>
                                 </div>
                                 <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
-                                <Edit/>
+                                    <Edit />
 
                                 </div>
                             </div>
@@ -108,9 +110,10 @@ const DonarProfile = () => {
                             </div>
                         </div>
                     </footer>
+
                    <Inputs />
                    <Helpform />
-                   
+
                 </section>
             </main>
         </>
