@@ -2,6 +2,7 @@ import education from "../assets/images/education.jpg";
 import profilePict from "../assets/images/profilePict.jpg";
 import Edit from "../components/EditInfo";
 import Inputs from "../components/History";
+import Helpform from "../components/Helpform";
 
 
 const DonarProfile = () => {
@@ -108,6 +109,8 @@ const DonarProfile = () => {
                         </div>
                     </footer>
                    <Inputs />
+                   <Helpform />
+                   
                 </section>
             </main>
         </>
