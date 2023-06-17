@@ -1,5 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import React, { useState, useEffect } from 'react'
-// import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const Checkout = () => {
@@ -16,6 +17,8 @@ const Checkout = () => {
     const [isAmountSelectedError, setIsAmountSelectedError] = useState(false);
     const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false); // New state for modal visibility
+    const [otherAmount, setOtherAmount] = useState();
+
 
     const handleInputChange = (event) => {
         const input = event.target.value.replace(/[^0-9]/g, '').slice(0, 16);
@@ -120,6 +123,19 @@ const Checkout = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Validate input fields
+        if (
+            !isValidCardNumber ||
+            nameOnCard.length < 6 ||
+            nameOnCard.length > 20 ||
+            securityCode.length !== 3 ||
+            expirationDate.length !== 5 ||
+            selectedAmount === ''
+        ) {
+            console.log('Please fill in all the required fields correctly.');
+            return;
+        }
+
         // Retrieve payment information from form fields
         const paymentData = {
             cardNumber,
@@ -128,7 +144,8 @@ const Checkout = () => {
             expirationDate,
             amountOfDonation: selectedAmount,
         };
-        console.log(paymentData)
+        console.log(paymentData);
+
         try {
             const response = await axios.post('http://localhost:3100/api/data', paymentData);
             console.log(response.data.message);
@@ -153,127 +170,255 @@ const Checkout = () => {
 
     return (
         <div>
-
-            <form onSubmit={handleSubmit} className="min-w-screen min-h-screen bg-gray-200 flex items-center justify-center px-5 pb-10 pt-16">
-                <div className="w-full mx-auto rounded-lg bg-white shadow-lg p-5 text-gray-700" style={{ maxWidth: 600 }}>
-                    <div className="w-full pt-1 pb-5">
-                        <div className="bg-indigo-500 text-white overflow-hidden rounded-full w-20 h-20 -mt-16 mx-auto shadow-lg flex justify-center items-center">
-                            <i className="mdi mdi-credit-card-outline text-3xl" />
-                        </div>
-                    </div>
-                    <div className="mb-10">
-                        <h1 className="text-center font-bold text-xl uppercase">ScholarFund Donate</h1>
-                        <div className="flex justify-center items-center mt-3">
-                            <div className="form-radio">
+            <>
+                <form onSubmit={handleSubmit}
+                    className="mt-24 mb-24 grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
+                    <div className="px-4 pt-8">
+                        <p className="mt-8 text-lg font-medium">Donatation amount</p>
+                        <div
+                            className="mt-5 grid gap-6">
+                            <div className="relative">
                                 <input
-                                    type="radio"
-                                    name="donationAmount"
+                                    className="peer hidden"
                                     id="radio1"
-                                    value="10"
-                                    onChange={handleAmountSelection}
-                                />
-                                <label htmlFor="radio1" className="text-sm ml-2">
-                                    10$
-                                </label>
-                            </div>
-                            <div className="form-radio ml-4">
-                                <input
                                     type="radio"
                                     name="donationAmount"
+                                    value="200"
+                                    onChange={handleAmountSelection}
+                                />
+                                <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white" />
+                                <label
+                                    className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4"
+                                    htmlFor="radio1"
+                                >
+                                    <img
+                                        className="w-14 object-contain"
+                                        src="/images/naorrAeygcJzX0SyNI4Y0.png"
+                                        alt=""
+                                    />
+                                    <div className="ml-5">
+                                        <span className="mt-2 font-semibold">Poor</span>
+                                        <p className="text-slate-500 text-sm leading-6">
+                                            200 JD
+                                        </p>
+                                    </div>
+                                </label>
+                            </div>
+                            <div className="relative">
+                                <input
+                                    className="peer hidden"
                                     id="radio2"
-                                    value="25"
-                                    onChange={handleAmountSelection}
-                                />
-                                <label htmlFor="radio2" className="text-sm ml-2">
-                                    25$
-                                </label>
-                            </div>
-                            <div className="form-radio ml-4">
-                                <input
                                     type="radio"
                                     name="donationAmount"
-                                    id="radio3"
-                                    value="50"
+                                    value="400"
                                     onChange={handleAmountSelection}
                                 />
-                                <label htmlFor="radio3" className="text-sm ml-2">
-                                    50$
+                                <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white" />
+                                <label
+                                    className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4"
+                                    htmlFor="radio2"
+                                >
+                                    <img
+                                        className="w-14 object-contain"
+                                        src="/images/oG8xsl3xsOkwkMsrLGKM4.png"
+                                        alt=""
+                                    />
+                                    <div className="ml-5">
+                                        <span className="mt-2 font-semibold">Imitate</span>
+                                        <p className="text-slate-500 text-sm leading-6">
+                                            400JD
+                                        </p>
+                                    </div>
                                 </label>
                             </div>
-                            {isAmountSelectedError && (
-                                <p className="text-red-500 text-sm mt-2">Please select a donation amount.</p>
-                            )}
-                        </div>
+                            <div className="relative">
+                                <input
+                                    className="peer hidden"
+                                    id="radio3"
+                                    type="radio"
+                                    name="donationAmount"
+                                    value="600"
+                                    onChange={handleAmountSelection}
+                                />
+                                <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white" />
+                                <label
+                                    className="peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50 flex cursor-pointer select-none rounded-lg border border-gray-300 p-4"
+                                    htmlFor="radio3"
+                                >
+                                    <img
+                                        className="w-14 object-contain"
+                                        src="/images/oG8xsl3xsOkwkMsrLGKM4.png"
+                                        alt=""
+                                    />
+                                    <div className="ml-5">
+                                        <span className="mt-2 font-semibold">Super</span>
+                                        <p className="text-slate-500 text-sm leading-6">
+                                            600 JD
+                                        </p>
+                                    </div>
+                                </label>
+                            </div>
+                            <div className="relative">
+                                <input
+                                    className="peer block w-full px-20 py-7 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:ring-teal-500 transition-colors"
+                                    id="other"
+                                    type="text"
+                                    name="otherAmount"
+                                    value={otherAmount}
+                                    onChange={handleAmountSelection}
+                                    placeholder="Other Amount"
+                                />
+                                {isAmountSelectedError && (
+                                    <p className="text-red-500 text-sm mt-2">Please select a donation amount.</p>
+                                )}
+                                <span className="peer-checked:border-gray-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white" />
+                            </div>
 
-                    </div>
-                    <div className="mb-3">
-                        <label className="font-bold text-sm mb-2 ml-1">Name on card</label>
-                        <div>
-                            <input
-                                className={`w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:ring-teal-500 transition-colors ${nameOnCard.length < 6 || nameOnCard.length > 20 ? 'border-red-500' : ''}`}
-                                placeholder="John Smith"
-                                type="text"
-                                value={nameOnCard}
-                                onChange={handleNameInputChange}
-                                required
-                            />
-                        </div>
-                        {(nameOnCard.length < 6 || nameOnCard.length > 20) && (
-                            <p className="text-red-500 text-sm">Name must be between 6 and 20 characters</p>
-                        )}
-                    </div>
-                    <div className="mb-3">
-                        <label className="font-bold text-sm mb-2 ml-1">Card number</label>
-                        <div>
-                            <input
-                                className={`w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:ring-teal-500 transition-colors ${!isValidCardNumber ? 'border-red-500' : ''}`}
-                                placeholder="0000 0000 0000 0000"
-                                type="text"
-                                value={cardNumber}
-                                onChange={handleInputChange}
-                                required
-                            />
-                        </div>
-                        {!isValidCardNumber && (
-                            <p className="text-red-500 text-sm">Please enter a valid 16-digit card number</p>
-                        )}
-                    </div>
-                    <div className="mb-3">
-                        <label className="font-bold text-sm mb-2 ml-1">Expiration date</label>
-                        <input
-                            type="text"
-                            id="expiration-date"
-                            name="expiration-date"
-                            placeholder="MM/YY"
-                            className={`mt-1 block w-1/2 rounded border-gray-300 bg-gray-50 py-3 px-4 text-sm shadow-sm outline-none transition focus:ring-2 ${!isValidExpirationDate ? 'ring-red-500' : 'ring-teal-500'}`}
-                            maxLength="5"
-                            value={expirationDate}
-                            onChange={handleExpirationDateChange}
-                            required
-                        />
-                        {!isValidExpirationDate && (
-                            <p className="text-red-500 text-sm">Please enter a valid expiration date</p>
-                        )}
-                    </div>
-                    <div className="mb-10">
-                        <label className="font-bold text-sm mb-2 ml-1">Security code</label>
-                        <div>
-                            <input
-                                className={`w-32 px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors ${!isValidSecurityCode ? 'border-red-500' : ''}`}
-                                placeholder="123"
-                                type="text"
-                                value={securityCode}
-                                onChange={handleSecurityCodeChange}
-                                required
-                            />
                         </div>
                     </div>
-                    <div>
+                    <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
+                        <p className="text-xl font-medium">Payment Details</p>
+                        <p className="text-gray-400">
+                            Complete your donation by providing your payment details.
+                        </p>
+                        <div className="">
+
+                            <label
+                                htmlFor="card-holder"
+                                className="mt-4 mb-2 block text-sm font-medium"
+                            >
+                                Card Holder
+                            </label>
+                            <div className="relative">
+                                <input
+                                    type="text"
+                                    id="card-holder"
+                                    name="card-holder"
+                                    className={`w-full rounded-md border ${nameOnCard.length > 0 && (nameOnCard.length < 6 || nameOnCard.length > 20) ? 'border-red-500' : 'border-gray-200'} px-4 py-3 pl-11 text-sm uppercase shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500`}
+                                    placeholder="Your full name here"
+                                    value={nameOnCard}
+                                    onChange={handleNameInputChange}
+                                    required
+                                />
+                                {(nameOnCard.length > 0 && (nameOnCard.length < 6 || nameOnCard.length > 20)) && (
+                                    <p className="text-red-500 text-sm">Name must be between 6 and 20 characters</p>
+                                )}
+
+
+                                <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-4 w-4 text-gray-400"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        strokeWidth={2}
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z"
+                                        />
+                                    </svg>
+                                </div>
+                            </div>
+                            <label
+                                htmlFor="card-no"
+                                className="mt-4 mb-2 block text-sm font-medium"
+                            >
+                                Card Details
+                            </label>
+                            <div className="flex">
+                                <div className="relative w-7/12 flex-shrink-0">
+                                    <div className="flex items-center">
+                                        <input
+                                            type="text"
+                                            id="card-no"
+                                            name="card-no"
+                                            className={`w-full rounded-md border border-gray-200 px-2 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500
+                                            ${!isValidCardNumber ? 'border-red-500' : ''}`}
+                                            placeholder="xxxx-xxxx-xxxx-xxxx"
+                                            value={cardNumber}
+                                            onChange={handleInputChange}
+                                            required
+                                        />
+                                        {!isValidCardNumber && (
+                                            <p className="text-red-500 text-sm ml-2">Please enter a valid 16-digit card number</p>
+                                        )}
+                                    </div>
+                                    <div className="absolute inset-y-0 left-0 flex items-center px-3">
+                                        <svg
+                                            className="h-4 w-4 text-gray-400"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width={16}
+                                            height={16}
+                                            fill="currentColor"
+                                            viewBox="0 0 16 16"
+                                        >
+                                            <path d="M11 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1z" />
+                                            <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm13 2v5H1V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm-1 9H2a1 1 0 0 1-1-1v-1h14v1a1 1 0 0 1-1 1z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div className="flex flex-wrap">
+                                    <div className="relative flex-shrink-0 w-full sm:w-1/2 mb-4 sm:mb-0">
+                                        <input
+                                            type="text"
+                                            name="credit-expiry"
+                                            className={`w-full rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500
+                                            ${!isValidExpirationDate ? 'ring-red-500' : 'ring-teal-500'}`}
+                                            placeholder="MM/YY"
+                                            value={expirationDate}
+                                            onChange={handleExpirationDateChange}
+                                            required
+                                        />
+                                        {!isValidExpirationDate && (
+                                            <p className="text-red-500 text-sm mt-1">Please enter a valid expiration date</p>
+                                        )}
+                                    </div>
+                                    <div className="relative w-full sm:w-1/2">
+                                        <input
+                                            type="text"
+                                            name="credit-cvc"
+                                            className={`w-full rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500 
+                                            ${!isValidSecurityCode ? 'border-red-500' : ''}`}
+                                            placeholder="CVC"
+                                            value={securityCode}
+                                            onChange={handleSecurityCodeChange}
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <label
+                                htmlFor="billing-email"
+                                className="mt-4 mb-2 block text-sm font-medium"
+                            >
+                                Billing Email <span className='text-gray-500'>*(optional)</span>
+                            </label>
+                            <div className="flex flex-col sm:flex-row">
+                                <div className="relative flex-shrink-0 sm:w-7/12">
+                                    <input
+                                        type="text"
+                                        id="billing-email"
+                                        name="billing-email"
+                                        className="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                                        placeholder="Email Address"
+                                    />
+                                    <div className="fa-regular fa-envelope pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
+                                        <FontAwesomeIcon icon={faEnvelope} />
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
                         <button
-                            className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
                             onClick={handlePayment}
-                        >
-                            <i className="mdi mdi-lock-outline mr-1" /> PAY NOW
+                            className="mt-10 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">
+                            Donate !
                         </button>
                         {isModalVisible && (
                             <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -283,24 +428,24 @@ const Checkout = () => {
                                             Your donation of {selectedAmount}$ has been successful.
                                         </p>
                                     )}
-                                    {/* <p className="text-green-500 text-sm mb-4">
-                                        Your donation of {selectedAmount}$ has been successful.
-                                    </p> */}
+
                                     <button
                                         className="block bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-2 font-semibold"
                                         onClick={closeModal}
+                                        type='sumbit'
                                     >
                                         Close
+                                        {/* console.log("Payment done") */}
                                     </button>
                                 </div>
                             </div>
                         )}
                     </div>
-                </div>
-            </form>
+                </form>
+            </>
 
         </div >
     )
 }
 
-export default Checkout;
+export default Checkout
