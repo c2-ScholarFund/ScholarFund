@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Progress } from "@material-tailwind/react";
 
 export default function CardStudent() {
+  
   const [raised, setRaised] = useState(5000);
   const [goal, setGoal] = useState(10000);
 
