@@ -4,12 +4,12 @@ import Footer from "./components/Footer";
 import Error10 from "./pages/Error10 ";
 import Home from "./pages/Home";
 import CardStudent from "./components/CardStudent";
-
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Contactus from "./pages/Contactus";
 import AboutUs from "./pages/AboutUs";
 import DonarProfile from "./pages/DonarProfile";
+import EditProfile from "./components/EditProfile";
 
 
 function App() {
@@ -25,6 +25,7 @@ function App() {
         <Route path="contactus" element={<Contactus />} />
         <Route path="AboutUs" element={<AboutUs />} />
         <Route path="DonarProfile" element={<DonarProfile />} />
+        <Route path="edit" element={<EditProfile/>} />
         <Route path="*" element={<Error10 />} />
           
       </Routes>
