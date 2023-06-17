@@ -26,7 +26,7 @@ mongoose
     console.log(error);
   });
 
-// ! POST payment info
+// ! POST payment info ~~~ Mais
 app.post('/api/data', (req, res) => {
   const { cardNumber, nameOnCard, securityCode, expirationDate, amountOfDonation } = req.body;
 
@@ -40,7 +40,11 @@ app.post('/api/data', (req, res) => {
 });
 
 // Router setup
+
+// mufed
 app.use('/contacts', contactRoutes);
+
+//mahmoud
 app.use('/prob', stuproblemRoutes);
 
 
