@@ -1,6 +1,6 @@
 import CardStudent from "../components/CardStudent";
 
-export default function Studants() {
+export default function Students() {
   return (
     <>
       <div className="overflow-y-hidden">
