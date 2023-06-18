@@ -18,7 +18,7 @@ export default function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       // Password validation
       const passwordRegex =
@@ -32,7 +32,7 @@ export default function SignUp() {
         passwordInputRef.current.classList.remove("input-error");
         passErrorRef.current.textContent = "";
       }
-  
+
       const response = await fetch("http://localhost:3100/user/signup", {
         method: "POST",
         headers: {
@@ -40,7 +40,7 @@ export default function SignUp() {
         },
         body: JSON.stringify(formData),
       });
-  
+
       if (response.ok) {
         const data = await response.json();
         // Store the token in localStorage
@@ -60,13 +60,13 @@ export default function SignUp() {
       console.error("An error occurred:", error);
     }
   };
-  
+
 
   const handleChange = (e) => {
     if (e.target.name === "email" && showAlert) {
       setShowAlert(false);
     }
-  
+
     setFormData((prevData) => ({
       ...prevData,
       [e.target.name]: e.target.value,
@@ -192,7 +192,6 @@ export default function SignUp() {
 
           </Link>
 
-        
 
         </div>
       </div>
