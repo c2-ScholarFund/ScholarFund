@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
 export default function Login() {
@@ -6,6 +6,8 @@ export default function Login() {
     email: "",
     password: "",
   });
+  const [messageError, setMessageError] = useState ("") 
+  const emailErrorRef = useRef(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,11 +27,16 @@ export default function Login() {
         localStorage.setItem("token", data.token);
         // Handle the successful login
         console.log("Login successful");
-      } else {
+      }
+      else {
         // Handle the error case
+       
         console.error("Login failed");
       }
     } catch (error) {
+      setShowAlert(false);
+      emailErrorRef.current.textContent="The email is not match"
+      setMessageError("The email is not match")
       console.error("An error occurred:", error);
     }
   };
@@ -68,16 +75,19 @@ export default function Login() {
               <input
                 type="text"
                 name="email"
+                required
                 value={formData.email}
                 onChange={handleChange}
                 className="block w-full p-2 border rounded border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent"
                 placeholder="Email"
               />
+              <p {...messageError}></p>
             </div>
             <div className="mt-5">
               <input
                 type="password"
                 name="password"
+                required
                 value={formData.password}
                 onChange={handleChange}
                 className="block w-full p-2 border rounded border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-transparent"
@@ -94,8 +104,9 @@ export default function Login() {
             </div>
           </form>
           <Link to="/sginup">
-            <span className="block  p-5 text-center text-gray-800  text-xs">
-              Don't have an account? SignUp
+            <span className="block  p-5 text-center text-gray-800  text-l ">
+              Don't have an account ? 
+              <span className="text-l text-blue-600 ">  Sign Up</span>
             </span>
           </Link>
         </div>

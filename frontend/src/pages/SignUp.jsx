@@ -180,8 +180,9 @@ export default function SignUp() {
             </div>
           </form>
           <Link to="/login">
-            <span className="block  p-5 text-center text-gray-800  text-xs ">
-              Already have an account? Login
+          <span className="block  p-5 text-center text-gray-800  text-l ">
+              Already have an account ? 
+              <span className="text-l text-blue-600 ">  Login</span>
             </span>
 
           </Link>
