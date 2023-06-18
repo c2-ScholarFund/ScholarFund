@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios';
 
 const Checkout = () => {
@@ -143,6 +143,7 @@ const Checkout = () => {
             securityCode,
             expirationDate,
             amountOfDonation: selectedAmount,
+            user_id:User,
         };
         console.log(paymentData);
 
@@ -166,7 +167,35 @@ const Checkout = () => {
         }
     };
 
+    // USER_ID API 
+    const [User, setUser] = useState();
 
+    console.log(User)
+
+    useEffect(() => {
+      const token = localStorage.getItem("token") || false;
+        fetchUser(token)
+        
+    }, []);
+  
+    async function fetchUser(token) {
+      try {
+        const response = await axios.get("http://localhost:3100/user/checkToken", {
+          headers: {
+            authorization: `barear ${token}`,
+          },
+        }).then(response=>{
+  
+           setUser(response?.data.user_id)
+          
+        })
+        
+  
+      } catch (error) {
+        console.error(error);
+        return false;
+      }
+    }
 
     return (
         <div>

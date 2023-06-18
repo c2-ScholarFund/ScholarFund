@@ -28,10 +28,10 @@ mongoose
 
 // ! POST payment info ~~~ Mais
 app.post('/api/data', (req, res) => {
-  const { cardNumber, nameOnCard, securityCode, expirationDate, amountOfDonation } = req.body;
+  const { cardNumber, nameOnCard, securityCode, expirationDate, amountOfDonation,  user_id } = req.body;
 
   // Create a new instance of the Data model with the submitted data
-  const newData = new Data({ cardNumber, nameOnCard, securityCode, expirationDate, amountOfDonation });
+  const newData = new Data({ cardNumber, nameOnCard, securityCode, expirationDate, amountOfDonation, user_id });
 
   // Save the new data to the database
   newData.save()
