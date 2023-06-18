@@ -44,11 +44,12 @@ function App() {
         <Route path="DonarProfile" element={<DonarProfile />} />
 
 
-        {/* <Route path="ourPrograms" element={<Programs />} /> */}
+       
         <Route path="ourPrograms" element={<Programs/>} />
         <Route path="programDetails/:id" element={<ProgramDetails/>} />
 
         <Route path="Checkout" element={<Checkout />} />
+        <Route path="Checkout/:id" element={<Checkout />} />
         <Route path="edit" element={<EditProfile />} />
 
 
