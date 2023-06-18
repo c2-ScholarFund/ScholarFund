@@ -35,8 +35,15 @@ function App() {
         <Route path="contactus" element={<Contactus />} />
         <Route path="AboutUs" element={<AboutUs />} />
         <Route path="DonarProfile" element={<DonarProfile />} />
+
+
+        <Route path="ourPrograms" element={<Programs />} />
+        <Route path="programs" element={<Programs/>} />
+        <Route path="programDetails/:id" element={<ProgramDetails/>} />
+
         <Route path="Checkout" element={<Checkout />} />
         <Route path="edit" element={<EditProfile />} />
+
 
         <Route path="*" element={<Error10 />} />
       </Routes >
