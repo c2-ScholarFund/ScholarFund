@@ -198,12 +198,12 @@ const Checkout = () => {
     }
 
     return (
-        <div>
+        <div style={{ fontFamily: 'Playfair Display, serif' }}>
             <>
                 <form onSubmit={handleSubmit}
                     className="mt-24 mb-24 grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
-                    <div className="px-4 pt-8">
-                        <p className="mt-8 text-lg font-medium">Donatation amount</p>
+                    <div className="px-4">
+                        <p className=" text-lg font-medium">Donatation amount</p>
                         <div
                             className="mt-5 grid gap-6">
                             <div className="relative">
@@ -226,7 +226,7 @@ const Checkout = () => {
                                         alt=""
                                     />
                                     <div className="ml-5">
-                                        <span className="mt-2 font-semibold">Poor</span>
+                                        <span className="mt-2 font-semibold"></span>
                                         <p className="text-slate-500 text-sm leading-6">
                                             200 JD
                                         </p>
@@ -253,7 +253,7 @@ const Checkout = () => {
                                         alt=""
                                     />
                                     <div className="ml-5">
-                                        <span className="mt-2 font-semibold">Imitate</span>
+                                        <span className="mt-2 font-semibold"></span>
                                         <p className="text-slate-500 text-sm leading-6">
                                             400JD
                                         </p>
@@ -280,7 +280,7 @@ const Checkout = () => {
                                         alt=""
                                     />
                                     <div className="ml-5">
-                                        <span className="mt-2 font-semibold">Super</span>
+                                        <span className="mt-2 font-semibold"></span>
                                         <p className="text-slate-500 text-sm leading-6">
                                             600 JD
                                         </p>
@@ -289,7 +289,7 @@ const Checkout = () => {
                             </div>
                             <div className="relative">
                                 <input
-                                    className="peer block w-full px-20 py-7 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:ring-teal-500 transition-colors"
+                                    className="peer block w-full px-20 py-4 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:ring-teal-500 transition-colors"
                                     id="other"
                                     type="text"
                                     name="otherAmount"
