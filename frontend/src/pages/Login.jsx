@@ -1,7 +1,9 @@
 import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -27,6 +29,7 @@ export default function Login() {
         localStorage.setItem("token", data.token);
         // Handle the successful login
         console.log("Login successful");
+        navigate("/")
       }
       else {
         // Handle the error case
