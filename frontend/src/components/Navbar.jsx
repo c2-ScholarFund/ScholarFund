@@ -36,19 +36,18 @@ export default function Navbar() {
   return (
     <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-600">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-      <Link to="/" className="flex items-center">
-      <img src={Logo} className="h-12 mr-3" alt="Flowbite Logo" />
-    </Link>
+        <Link to="/" className="flex items-center">
+          <img src={Logo} className="h-12 mr-3" alt="Flowbite Logo" />
+        </Link>
         <div className="flex md:order-2">
           {isLoggedIn ? (
             <>
               <div className="flex items-center mr-4">
                 {/* Render user profile icon here */}
                 <Link to="/DonarProfile#" className="flex items-center mr-4 text-gray-900 dark:text-gray-400">
-                {/* Render user profile icon here */}
-                <FaUser className="w-6 h-6 text-gray-900 dark:text-gray-400" />
-                
-              </Link>
+                  {/* Render user profile icon here */}
+                  <FaUser className="w-6 h-6 text-gray-900 dark:text-gray-400" />
+                </Link>
               </div>
               <button
                 type="button"

@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const { jwtGenerator } = require('../utils/jwtGenerator');
 const User = require('../models/user');
 
-
 // Register route
 const signup = async (req, res) => {
   try {
@@ -61,8 +60,26 @@ const login = async (req, res) => {
   }
 };
 
+const getUser = async (req, res) => {
+  try {
+    const userId = req.params.id;
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json('User not found');
+    }
+
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+};
+
 module.exports = {
-    signup,
-    login
-  };
+  signup,
+  login,
+  getUser,
   
+};
