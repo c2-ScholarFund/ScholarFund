@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const { MONGO_URL, connectionParams } = require("./src/config/config");
 const contactRoutes = require('./src/routes/contactRoutes');
 const stuproblemRoutes = require('./src/routes/stuproblemRoutes');
+const payment = require("./src/routes/paymentInfo");
+
 
 const app = express();
 const Data = require('./src/models/data'); // Import the Data model
@@ -56,4 +58,5 @@ app.listen(3100, () => {
  app.use('/contacts', contactRoutes);
  app.use('/prob' , stuproblemRoutes);
  app.use('/user' , userRoutes);
+  app.use("/payment", payment);
 
