@@ -15,6 +15,8 @@ import Checkout from './pages/Checkout'
 import EditProfile from "./components/EditProfile";
 import Students from "./pages/Students";
 import { useEffect, useState } from "react";
+import ProgramDetails from "./pages/ProgramDetails";
+import Programs from "./pages/Programs";
 
 
 
@@ -35,15 +37,15 @@ function App() {
         <Route path="login" element={<Login />} />
 
         <Route path="sginup" element={<SignUp />} />
-        <Route path="Studant" element={<Students />} />
+        <Route path="Studants" element={<Students />} />
 
         <Route path="contactus" element={<Contactus />} />
         <Route path="AboutUs" element={<AboutUs />} />
         <Route path="DonarProfile" element={<DonarProfile />} />
 
 
-        <Route path="ourPrograms" element={<Programs />} />
-        <Route path="programs" element={<Programs/>} />
+        {/* <Route path="ourPrograms" element={<Programs />} /> */}
+        <Route path="ourPrograms" element={<Programs/>} />
         <Route path="programDetails/:id" element={<ProgramDetails/>} />
 
         <Route path="Checkout" element={<Checkout />} />

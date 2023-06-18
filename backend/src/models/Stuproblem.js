@@ -39,12 +39,17 @@ const problemSchema = new Schema({
     required: true
   },
   raised: {
-    type: Number,
-    
+    type: Number
   },
   images: {
     type: [Buffer],
     required: true
+  },
+  user_id: {
+    type: String ,
+    required: true
+
+
   }
 }, { timestamps: true });
 
