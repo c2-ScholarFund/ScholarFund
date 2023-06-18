@@ -1,6 +1,6 @@
 
 import  { useState, useRef } from "react";
-import {  useNavigate } from "react-router-dom";
+import {  Link , useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -45,7 +45,7 @@ export default function SignUp() {
         const data = await response.json();
         // Store the token in localStorage
         localStorage.setItem("token", data.token);
-        navigate("/");
+        navigate("/DonarProfile");
 
         // Handle the response data as needed
         console.log(data);
@@ -117,6 +117,12 @@ export default function SignUp() {
               </label>
             </div>
           </div>
+            
+          {showAlert && (
+            <div className="mt-4 p-4 bg-red-200 text-red-800 rounded">
+              The email address is already exist.
+            </div>
+          )}
           <form action="#" className="p-0" onSubmit={handleSubmit}>
             <div className="mt-5">
               <input
@@ -186,12 +192,7 @@ export default function SignUp() {
 
           </Link>
 
-          
-          {showAlert && (
-            <div className="mt-4 p-4 bg-red-200 text-red-800 rounded">
-              The email address is already in use.
-            </div>
-          )}
+        
 
         </div>
       </div>

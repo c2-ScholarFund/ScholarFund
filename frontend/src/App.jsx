@@ -14,11 +14,16 @@ import Checkout from './pages/Checkout'
 
 import EditProfile from "./components/EditProfile";
 import Students from "./pages/Students";
+import { useEffect, useState } from "react";
 
 
 
 function App() {
-  const currentPath = window.location.pathname;
+  const [currentPath, setCurrentPath] = useState(false);
+
+  useEffect(() => {
+    setCurrentPath(window.location.pathname);
+  }, [window.location.pathname]);
 
   return (
     // testing

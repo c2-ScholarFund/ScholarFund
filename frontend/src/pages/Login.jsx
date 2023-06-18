@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,6 +22,7 @@ export default function Login() {
 
       if (response.ok) {
         const data = await response.json();
+        navigate("/DonarProfile");
         // Store the token in localStorage
         localStorage.setItem("token", data.token);
         // Handle the successful login

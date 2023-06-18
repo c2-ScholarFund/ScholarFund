@@ -1,8 +1,11 @@
 import { useState } from "react";
 import Cardprob from "./Cardprob";
 import axios from "axios";
-
+import jwtDecode from 'jwt-decode';
 export default function Helpform() {
+  const token = localStorage.getItem('token');
+  const decodedToken = jwtDecode(token);
+  const userId = decodedToken.user_id;
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -13,10 +16,15 @@ export default function Helpform() {
   const [problemDescription, setProblemDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [images, setImages] = useState([]);
-
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
+    if (formSubmitted) {
+      return;
+    }
+  
     const formData = new FormData();
     formData.append("fullname", fullname);
     formData.append("email", email);
@@ -27,15 +35,26 @@ export default function Helpform() {
     formData.append("amount", amount);
     formData.append("program", program);
     formData.append("problemDescription", problemDescription);
-
+  
     for (let i = 0; i < images.length; i++) {
       formData.append("images", images[i]);
     }
-
+  
     try {
-      await axios.post("http://localhost:3100/prob/addproblem", formData);
+       await axios.post("http://localhost:3100/prob/addproblem", formData);
+      const submittedId = userId; // Assuming the response contains the submitted ID
       alert("Problem submitted successfully");
-      // Reset form fields and images
+  
+      // Save submittedId to localStorage
+      const submittedIdsString = localStorage.getItem('submittedIds');
+      const submittedIds = submittedIdsString ? JSON.parse(submittedIdsString) : [];
+  
+      // Add the new submittedId to the array
+      submittedIds.push(submittedId);
+  
+      // Save the updated array to localStorage
+      localStorage.setItem('submittedIds', JSON.stringify(submittedIds));
+  
       setFullname("");
       setEmail("");
       setPhoneNumber("");
@@ -46,25 +65,39 @@ export default function Helpform() {
       setProblemDescription("");
       setAmount("");
       setImages([]);
+      setFormSubmitted(true);
     } catch (error) {
       console.error("An error occurred while submitting the problem", error);
       alert("An error occurred while submitting the problem");
     }
   };
-
+  
   const handleFileChange = (e) => {
     const selectedImages = Array.from(e.target.files);
     setImages(selectedImages);
   };
-
-  return (
+  
+  // Check if form has been submitted and userId is present in localStorage
+  const submittedIdsString = localStorage.getItem('submittedIds');
+  const submittedIds = submittedIdsString ? JSON.parse(submittedIdsString) : [];
+  
+  if (submittedIds.includes(userId)) {
+    return (
+      <section className="py-1 bg-blueGray-50">
+        <div className="w-full lg:w-8/12 px-4 mx-auto mt-6">
+          <Cardprob submittedId={userId} />
+        </div>
+      </section>
+    );
+  } else {
+    return (
     <>
       <section className="py-1 bg-blueGray-50">
         <div className="w-full lg:w-8/12 px-4 mx-auto mt-6">
           <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-            <div className="rounded-t bg-red-100 mb-0 px-6 py-6">
-              <div className="text-center flex justify-between">
-                <h6 className="text-blueGray-700 text-xl font-bold">
+          <div className="rounded-t bg-red-100 mb-0 px-6 py-6" style={{ backgroundColor: "#cf1a45" }}>
+          <div className="text-center flex justify-between">
+                <h6 className="text-black-700 text-xl font-bold">
                   Add your problem
                 </h6>
               </div>
@@ -160,7 +193,7 @@ export default function Helpform() {
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        defaultValue="Amman"
+                        defaultValue="Zarqa"
                       >
                         <option value="Zarqa">Zarqa</option>
                         <option value="Amman">Amman</option>
@@ -309,4 +342,5 @@ export default function Helpform() {
       </section>
     </>
   );
+}
 }
