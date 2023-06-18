@@ -5,6 +5,12 @@ const usercontroller = require('../controller/usercontroller');
 
 router.post('/signup', usercontroller.signup);
 router.post('/login', usercontroller.login);
+
+router.get("/checkToken", usercontroller.authenticateToken, (req, res) => {
+    res.send(req.user);
+  } )
+
 router.get('/getdata/:id', usercontroller.getUser);
+
 
 module.exports = router;

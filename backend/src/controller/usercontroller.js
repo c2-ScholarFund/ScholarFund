@@ -76,10 +76,31 @@ const getUser = async (req, res) => {
     res.status(500).send('Server Error');
   }
 };
+function authenticateToken(req, res, next) {
+
+  const authHeader = req.headers.authorization;
+  console.log(authHeader)
+  const token = authHeader && authHeader.split(" ")[1];
+  console.log(token)
+
+  if (!token) {
+    return res.status(401).json({ error: "Not found" });
+  }
+
+  jwt.verify(token, process.env.jwtSecret, (err, decoded) => {
+    if (err) {
+      return res.status(403).json({ error: "Invalid" });
+    }
+
+    req.user = decoded;
+    next();
+  });
+}
 
 module.exports = {
   signup,
   login,
   getUser,
+  authenticateToken,
   
 };

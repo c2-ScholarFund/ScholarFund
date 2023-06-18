@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Cardprob from "./Cardprob";
 import axios from "axios";
 import jwtDecode from 'jwt-decode';
@@ -35,6 +35,7 @@ export default function Helpform() {
     formData.append("amount", amount);
     formData.append("program", program);
     formData.append("problemDescription", problemDescription);
+    formData.append("user_id", User);
   
     for (let i = 0; i < images.length; i++) {
       formData.append("images", images[i]);
@@ -71,6 +72,34 @@ export default function Helpform() {
       alert("An error occurred while submitting the problem");
     }
   };
+
+  const [User, setUser] = useState();
+
+  console.log(User)
+  useEffect(() => {
+    const token = localStorage.getItem("token") || false;
+      fetchUser(token)
+      
+  }, []);
+
+  async function fetchUser(token) {
+    try {
+      const response = await axios.get("http://localhost:3100/user/checkToken", {
+        headers: {
+          authorization: `barear ${token}`,
+        },
+      }).then(response=>{
+
+         setUser(response?.data)
+        
+      })
+      
+
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  }
   
   const handleFileChange = (e) => {
     const selectedImages = Array.from(e.target.files);

@@ -15,6 +15,7 @@ const addproblem = async (req, res, next) => {
       const {
         fullname,
         email,
+        user_id,
         phoneNumber,
         dateOfBirth,
         city,
@@ -35,6 +36,7 @@ const addproblem = async (req, res, next) => {
       // Create a new problem instance
       const problem = new Problem({
         fullname,
+        user_id,
         email,
         phoneNumber,
         dateOfBirth,
