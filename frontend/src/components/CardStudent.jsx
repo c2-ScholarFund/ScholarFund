@@ -1,328 +1,81 @@
+import { useEffect, useState } from "react";
+import { Progress } from "@material-tailwind/react";
+import axios from "axios";
 
 export default function CardStudent() {
-    return (
-        <>
-            <div className="bg-gray-100 ">
-                {/* Remove py-8 */}
-                <div className="mx-auto container py-8">
-                    <div className="flex flex-wrap items-center lg:justify-between justify-center">
-                        {/* Card 1 */}
-                        <div className="mx-2 w-72 lg:mb-0 mb-8">
-                            <div>
-                                <img src="https://cdn.tuk.dev/assets/templates/classified/Bitmap (1).png" className="w-full h-44" />
-                            </div>
-                            <div className="bg-white">
-                                <div className="flex items-center justify-between px-4 pt-4">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-bookmark" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3v-14a2 2 0 0 1 2 -2" />
-                                        </svg>
-                                    </div>
-                                    <div className="bg-yellow-200 py-1.5 px-6 rounded-full">
-                                        <p className="text-xs text-yellow-500">Featured</p>
-                                    </div>
-                                </div>
-                                <div className="p-4">
-                                    <div className="flex items-center">
-                                        <h2 className="text-lg font-semibold">iphone XS</h2>
-                                        <p className="text-xs text-gray-600 pl-5">4 days ago</p>
-                                    </div>
-                                    <p className="text-xs text-gray-600 mt-2">The Apple iPhone XS is available in 3 colors with 64GB memory. Shoot amazing videos</p>
-                                    <div className="flex mt-4">
-                                        <div>
-                                            <p className="text-xs text-gray-600 px-2 bg-gray-200 py-1">12 months warranty</p>
-                                        </div>
-                                        <div className="pl-2">
-                                            <p className="text-xs text-gray-600 px-2 bg-gray-200 py-1">Complete box</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center justify-between py-4">
-                                        <h2 className="text-indigo-700 text-xs font-semibold">Bay Area, San Francisco</h2>
-                                        <h3 className="text-indigo-700 text-xl font-semibold">$350</h3>
-                                    </div>
-                                </div>
-                            </div>
+  
+  const [raised, setRaised] = useState(5000);
+  const [goal, setGoal] = useState(10000);
+  const [Problems, setProblems] = useState();
+
+  useEffect(() => {
+    fetchProblems();
+  }, []);
+
+  const fetchProblems = async () => {
+    try {
+      const response = await axios.get("http://localhost:3100/prob/getproblem")
+      .then(response => {setProblems(response.data)
+        console.log(Problems)})
+      
+      
+    } catch (error) {
+      console.error("An error occurred while fetching problems", error);
+      // Handle error state or display error message
+    }
+  };
+
+  return (
+    <div className="flex flex-wrap justify-center px-40">
+      {Problems?.map(problem=>(
+                      <div className="w-80 mx-10 mb-10 scale-y-95 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                      <a href="#">
+                        <img
+                          className="rounded-t-lg h-60"
+                          src={problem.images[0]}
+                          alt=""
+                        />
+                      </a>
+                      <div className="flex w-full flex-col gap-4 p-3">
+                        <Progress
+                          value={Math.ceil((problem?.raised / problem?.amount) * 100)}
+                          size="lg"
+                          label="."
+                          color="red"
+                        />
+                      </div>
+                      <div className="flex justify-between">
+                        <small className="text-gray-600 ms-5">Raised :{problem?.raised}$ </small>
+                        <small className="text-gray-600 me-5">Goal :{problem?.amount}$ </small>
+                      </div>
+              
+                      <div className="p-5">
+                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                          {problem?.fullname}
+                        </h5>
+                        <hr />
+                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                          {problem?.problemDescription}
+                        </p>
+                        <div className="flex justify-between">
+                          <a
+                            href="#"
+                            className="inline-flex items-center px-8 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                          >
+                            Read more
+                          </a>
+                          <a
+                            href="#"
+                            className="inline-flex items-center px-8 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                          >
+                            Donate Now
+                          </a>
                         </div>
-                        {/* Card 1 Ends */}
-                        {/* Card 2 */}
-                        <div className="mx-2 w-72 lg:mb-0 mb-8">
-                            <div>
-                                <img src="https://cdn.tuk.dev/assets/templates/classified/Bitmap (1).png" className="w-full h-44" />
-                            </div>
-                            <div className="bg-white">
-                                <div className="flex items-center justify-between px-4 pt-4">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-bookmark" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3v-14a2 2 0 0 1 2 -2" />
-                                        </svg>
-                                    </div>
-                                    <div className="bg-yellow-200 py-1.5 px-6 rounded-full">
-                                        <p className="text-xs text-yellow-500">Featured</p>
-                                    </div>
-                                </div>
-                                <div className="p-4">
-                                    <div className="flex items-center">
-                                        <h2 className="text-lg font-semibold">iphone XS</h2>
-                                        <p className="text-xs text-gray-600 pl-5">4 days ago</p>
-                                    </div>
-                                    <p className="text-xs text-gray-600 mt-2">The Apple iPhone XS is available in 3 colors with 64GB memory. Shoot amazing videos</p>
-                                    <div className="flex mt-4">
-                                        <div>
-                                            <p className="text-xs text-gray-600 px-2 bg-gray-200 py-1">12 months warranty</p>
-                                        </div>
-                                        <div className="pl-2">
-                                            <p className="text-xs text-gray-600 px-2 bg-gray-200 py-1">Complete box</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center justify-between py-4">
-                                        <h2 className="text-indigo-700 text-xs font-semibold">Bay Area, San Francisco</h2>
-                                        <h3 className="text-indigo-700 text-xl font-semibold">$350</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/* Card 2 Ends */}
-                        {/* Card 3  */}
-                        <div className="mx-2 w-72 lg:mb-0 mb-8">
-                            <div>
-                                <img src="https://cdn.tuk.dev/assets/templates/classified/Bitmap (1).png" className="w-full h-44" />
-                            </div>
-                            <div className="bg-white">
-                                <div className="flex items-center justify-between px-4 pt-4">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-bookmark" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3v-14a2 2 0 0 1 2 -2" />
-                                        </svg>
-                                    </div>
-                                    <div className="bg-yellow-200 py-1.5 px-6 rounded-full">
-                                        <p className="text-xs text-yellow-500">Featured</p>
-                                    </div>
-                                </div>
-                                <div className="p-4">
-                                    <div className="flex items-center">
-                                        <h2 className="text-lg font-semibold">iphone XS</h2>
-                                        <p className="text-xs text-gray-600 pl-5">4 days ago</p>
-                                    </div>
-                                    <p className="text-xs text-gray-600 mt-2">The Apple iPhone XS is available in 3 colors with 64GB memory. Shoot amazing videos</p>
-                                    <div className="flex mt-4">
-                                        <div>
-                                            <p className="text-xs text-gray-600 px-2 bg-gray-200 py-1">12 months warranty</p>
-                                        </div>
-                                        <div className="pl-2">
-                                            <p className="text-xs text-gray-600 px-2 bg-gray-200 py-1">Complete box</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center justify-between py-4">
-                                        <h2 className="text-indigo-700 text-xs font-semibold">Bay Area, San Francisco</h2>
-                                        <h3 className="text-indigo-700 text-xl font-semibold">$350</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/* Card 3 Ends */}
-                        {/* Card 4  */}
-                        <div className="w-72 mx-2 lg:mb-0 mb-8">
-                            <div>
-                                <img src="https://cdn.tuk.dev/assets/templates/classified/Bitmap (1).png" className="w-full h-44" />
-                            </div>
-                            <div className="bg-white">
-                                <div className="flex items-center justify-between px-4 pt-4">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-bookmark" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3v-14a2 2 0 0 1 2 -2" />
-                                        </svg>
-                                    </div>
-                                    <div className="bg-yellow-200 py-1.5 px-6 rounded-full">
-                                        <p className="text-xs text-yellow-500">Featured</p>
-                                    </div>
-                                </div>
-                                <div className="p-4">
-                                    <div className="flex items-center">
-                                        <h2 className="text-lg font-semibold">iphone XS</h2>
-                                        <p className="text-xs text-gray-600 pl-5">4 days ago</p>
-                                    </div>
-                                    <p className="text-xs text-gray-600 mt-2">The Apple iPhone XS is available in 3 colors with 64GB memory. Shoot amazing videos</p>
-                                    <div className="flex mt-4">
-                                        <div>
-                                            <p className="text-xs text-gray-600 px-2 bg-gray-200 py-1">12 months warranty</p>
-                                        </div>
-                                        <div className="pl-2">
-                                            <p className="text-xs text-gray-600 px-2 bg-gray-200 py-1">Complete box</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center justify-between py-4">
-                                        <h2 className="text-indigo-700 text-xs font-semibold">Bay Area, San Francisco</h2>
-                                        <h3 className="text-indigo-700 text-xl font-semibold">$350</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/* Card 4 Ends */}
+                      </div>
                     </div>
-                    <div className="flex flex-wrap items-center lg:justify-between justify-center pb-10 mt-16">
-                        {/* Card 1 */}
-                        <div className="mx-2 w-72 lg:mb-0 mb-8">
-                            <div>
-                                <img src="https://cdn.tuk.dev/assets/templates/classified/Bitmap.png" className="w-full h-44" />
-                            </div>
-                            <div className="bg-white">
-                                <div className="flex items-center justify-between px-4 pt-4">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-bookmark" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3v-14a2 2 0 0 1 2 -2" />
-                                        </svg>
-                                    </div>
-                                    <div className="bg-yellow-200 py-1.5 px-6 rounded-full">
-                                        <p className="text-xs text-yellow-500">Featured</p>
-                                    </div>
-                                </div>
-                                <div className="p-4">
-                                    <div className="flex items-center">
-                                        <h2 className="text-lg font-semibold">iphone XS</h2>
-                                        <p className="text-xs text-gray-600 pl-5">4 days ago</p>
-                                    </div>
-                                    <p className="text-xs text-gray-600 mt-2">The Apple iPhone XS is available in 3 colors with 64GB memory. Shoot amazing videos</p>
-                                    <div className="flex mt-4">
-                                        <div>
-                                            <p className="text-xs text-gray-600 px-2 bg-gray-200 py-1">12 months warranty</p>
-                                        </div>
-                                        <div className="pl-2">
-                                            <p className="text-xs text-gray-600 px-2 bg-gray-200 py-1">Complete box</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center justify-between py-4">
-                                        <h2 className="text-indigo-700 text-xs font-semibold">Bay Area, San Francisco</h2>
-                                        <h3 className="text-indigo-700 text-xl font-semibold">$350</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/* Card 1 Ends */}
-                        {/* Card 2 */}
-                        <div className="mx-2 w-72 lg:mb-0 mb-8">
-                            <div>
-                                <img src="https://cdn.tuk.dev/assets/templates/classified/Bitmap.png" className="w-full h-44" />
-                            </div>
-                            <div className="bg-white">
-                                <div className="flex items-center justify-between px-4 pt-4">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-bookmark" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3v-14a2 2 0 0 1 2 -2" />
-                                        </svg>
-                                    </div>
-                                    <div className="bg-yellow-200 py-1.5 px-6 rounded-full">
-                                        <p className="text-xs text-yellow-500">Featured</p>
-                                    </div>
-                                </div>
-                                <div className="p-4">
-                                    <div className="flex items-center">
-                                        <h2 className="text-lg font-semibold">iphone XS</h2>
-                                        <p className="text-xs text-gray-600 pl-5">4 days ago</p>
-                                    </div>
-                                    <p className="text-xs text-gray-600 mt-2">The Apple iPhone XS is available in 3 colors with 64GB memory. Shoot amazing videos</p>
-                                    <div className="flex mt-4">
-                                        <div>
-                                            <p className="text-xs text-gray-600 px-2 bg-gray-200 py-1">12 months warranty</p>
-                                        </div>
-                                        <div className="pl-2">
-                                            <p className="text-xs text-gray-600 px-2 bg-gray-200 py-1">Complete box</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center justify-between py-4">
-                                        <h2 className="text-indigo-700 text-xs font-semibold">Bay Area, San Francisco</h2>
-                                        <h3 className="text-indigo-700 text-xl font-semibold">$350</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/* Card 2 Ends */}
-                        {/* Card 3  */}
-                        <div className="mx-2 w-72 lg:mb-0 mb-8">
-                            <div>
-                                <img src="https://cdn.tuk.dev/assets/templates/classified/Bitmap.png" className="w-full h-44" />
-                            </div>
-                            <div className="bg-white">
-                                <div className="flex items-center justify-between px-4 pt-4">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-bookmark" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3v-14a2 2 0 0 1 2 -2" />
-                                        </svg>
-                                    </div>
-                                    <div className="bg-yellow-200 py-1.5 px-6 rounded-full">
-                                        <p className="text-xs text-yellow-500">Featured</p>
-                                    </div>
-                                </div>
-                                <div className="p-4">
-                                    <div className="flex items-center">
-                                        <h2 className="text-lg font-semibold">iphone XS</h2>
-                                        <p className="text-xs text-gray-600 pl-5">4 days ago</p>
-                                    </div>
-                                    <p className="text-xs text-gray-600 mt-2">The Apple iPhone XS is available in 3 colors with 64GB memory. Shoot amazing videos</p>
-                                    <div className="flex mt-4">
-                                        <div>
-                                            <p className="text-xs text-gray-600 px-2 bg-gray-200 py-1">12 months warranty</p>
-                                        </div>
-                                        <div className="pl-2">
-                                            <p className="text-xs text-gray-600 px-2 bg-gray-200 py-1">Complete box</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center justify-between py-4">
-                                        <h2 className="text-indigo-700 text-xs font-semibold">Bay Area, San Francisco</h2>
-                                        <h3 className="text-indigo-700 text-xl font-semibold">$350</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/* Card 3 Ends */}
-                        {/* Card 4  */}
-                        <div className="mx-2 w-72 lg:mb-0 mb-8">
-                            <div>
-                                <img src="https://cdn.tuk.dev/assets/templates/classified/Bitmap.png" className="w-full h-44" />
-                            </div>
-                            <div className="bg-white">
-                                <div className="flex items-center justify-between px-4 pt-4">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-bookmark" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <path d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3v-14a2 2 0 0 1 2 -2" />
-                                        </svg>
-                                    </div>
-                                    <div className="bg-yellow-200 py-1.5 px-6 rounded-full">
-                                        <p className="text-xs text-yellow-500">Featured</p>
-                                    </div>
-                                </div>
-                                <div className="p-4">
-                                    <div className="flex items-center">
-                                        <h2 className="text-lg font-semibold">iphone XS</h2>
-                                        <p className="text-xs text-gray-600 pl-5">4 days ago</p>
-                                    </div>
-                                    <p className="text-xs text-gray-600 mt-2">The Apple iPhone XS is available in 3 colors with 64GB memory. Shoot amazing videos</p>
-                                    <div className="flex mt-4">
-                                        <div>
-                                            <p className="text-xs text-gray-600 px-2 bg-gray-200 py-1">12 months warranty</p>
-                                        </div>
-                                        <div className="pl-2">
-                                            <p className="text-xs text-gray-600 px-2 bg-gray-200 py-1">Complete box</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center justify-between py-4">
-                                        <h2 className="text-indigo-700 text-xs font-semibold">Bay Area, San Francisco</h2>
-                                        <h3 className="text-indigo-700 text-xl font-semibold">$350</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/* Card 4 Ends */}
-                    </div>
-                </div>
-            </div>
-        </>
-    );
+
+      ))}
+
+    </div>
+  );
 }

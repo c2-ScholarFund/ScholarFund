@@ -21,6 +21,7 @@ const addproblem = async (req, res, next) => {
         gpa,
         program,
         problemDescription,
+        amount,
       } = req.body;
 
       let images = [];
@@ -41,6 +42,8 @@ const addproblem = async (req, res, next) => {
         gpa,
         program,
         problemDescription,
+        amount,
+        raised: 0, // Set raised field to zero
         images,
       });
 
@@ -54,6 +57,7 @@ const addproblem = async (req, res, next) => {
     }
   });
 };
+
 
 const getproblem = async (req, res) => {
   try {
