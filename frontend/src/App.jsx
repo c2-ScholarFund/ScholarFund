@@ -34,7 +34,8 @@ function App() {
         <Route path="DonarProfile" element={<DonarProfile />} />
 
         <Route path="ourPrograms" element={<Programs />} />
-
+  <Route path="programs" element={<Programs/>} />
+        <Route path="programDetails/:id" element={<ProgramDetails/>} />
         <Route path="*" element={<Error10 />} />
           
       </Routes>
