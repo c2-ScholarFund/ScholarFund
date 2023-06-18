@@ -186,7 +186,7 @@ const Checkout = () => {
           },
         }).then(response=>{
   
-           setUser(response?.data.user_id)
+           setUser(response?.data)
           
         })
         
