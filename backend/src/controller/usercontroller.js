@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const { jwtGenerator } = require('../utils/jwtGenerator');
 const User = require('../models/user');
+const jwt = require('jsonwebtoken')
 
 // Register route
 const signup = async (req, res) => {

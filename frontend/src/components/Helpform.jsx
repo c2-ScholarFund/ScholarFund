@@ -90,7 +90,7 @@ export default function Helpform() {
         },
       }).then(response=>{
 
-         setUser(response?.data)
+         setUser(response?.data.user_id)
         
       })
       
