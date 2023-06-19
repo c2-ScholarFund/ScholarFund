@@ -9,6 +9,8 @@ export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [activeLink, setActiveLink] = useState("home");
+    const [userRole, setUserRole] = useState("");
+
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
@@ -21,6 +23,8 @@ export default function Navbar() {
       const decodedToken = jwtDecode(token);
       if (decodedToken) {
         setUsername(decodedToken.username);
+                setUserRole(decodedToken.role);
+
         setIsLoggedIn(true);
       }
     }
@@ -135,19 +139,21 @@ export default function Navbar() {
                 Our Programs
               </Link>
             </li>
-            <li>
-              <Link
-                to="Studants"
-                className={
-                  activeLink === "OurStudents"
-                    ? "block py-2 pl-3 pr-4 text-[#1A56DB] rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1A56DB] md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 underline"
-                    : "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1A56DB] md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline	"
-                }
-                onClick={() => handleLinkClick("OurStudents")}
-              >
-                Our Students
-              </Link>
-            </li>
+            {userRole !== "student" && (
+              <li>
+                <Link
+                  to="Studants"
+                  className={
+                    activeLink === "OurStudents"
+                      ? "block py-2 pl-3 pr-4 text-[#1A56DB] rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1A56DB] md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 underline"
+                      : "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1A56DB] md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline	"
+                  }
+                  onClick={() => handleLinkClick("OurStudents")}
+                >
+                  Our Students
+                </Link>
+              </li>
+            )}
             <li>
               <Link
                 to="AboutUs"

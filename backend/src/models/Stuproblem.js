@@ -20,7 +20,6 @@ const problemSchema = new Schema({
   },
   city: {
     type: String,
-    required: true
   },
   gpa: {
     type: Number,

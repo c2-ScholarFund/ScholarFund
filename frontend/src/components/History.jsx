@@ -1,157 +1,99 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import jwtDecode from "jwt-decode";
 
 function Inputs() {
-    // const [choose, setChoose] = useState(false);
-    // const [type, setType] = useState(false);
-    return (
-        <>
-            <div className="w-full sm:px-6">
-                {/* <div className="px-4 md:px-10 py-4 md:py-7 bg-gray-100 rounded-tl-lg rounded-tr-lg">
+  const [paymentData, setPaymentData] = useState([]);
 
-                </div> */}
-                <div className="bg-white shadow px-4 md:px-10 pt-4 md:pt-7 pb-5 overflow-y-auto">
-                    <table className="w-full whitespace-nowrap">
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      return;
+    }
+    const decodedToken = jwtDecode(token);
+    const userId = decodedToken.user_id;
+    console.log(userId);
 
+    // Function to fetch payment data from the server
+    const fetchPaymentData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3100/payment/getpayment"
+        );
+        const filteredData = response.data.filter(
+          (dataItem) => dataItem.user_id === userId
+        );
 
-                        <thead className="bg-gray-100">
-                            <tr className="h-16 w-full text-sm leading-none text-gray-800">
-                                <th className="font-normal text-left pl-7">
-                                    <div className="relative">
-                                        <div className=" dark:bg-gray-800 flex center  w-40" >
-                                            <p className="px-3 py-3 text-gray-600 dark:text-gray-400 text-xl leading-3 tracking-normal font-normal">Eligibility Criteria</p>
-                                        </div>
+        setPaymentData(filteredData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-                                    </div>
-                                </th>
+    fetchPaymentData();
+  }, []);
 
-                                <th className="font-normal text-left pl-7">
-                                    <div className="relative">
-                                        <div className="dark:bg-gray-800 flex center  w-40" >
-                                            <p className="px-3 py-3 text-gray-600 dark:text-gray-400 text-xl leading-3 tracking-normal font-normal">Scholarship Type</p>
-                                        </div>
-                                    </div>
-                                </th>
-
-                                <th className="font-normal text-left pl-7">
-                                    <div className="relative">
-                                        <div className="dark:bg-gray-800 flex center  w-40" >
-                                            <p className="px-9 py-3 text-gray-600 dark:text-gray-400 text-xl leading-3 tracking-normal font-normal">Budget</p>
-                                        </div>
-                                    </div>
-                                </th>
-
-                                <th className="font-normal text-left pl-7">
-                                    <div className="relative">
-                                        <div className="dark:bg-gray-800 flex center  w-40" >
-                                            <p className="px-9 py-3 text-gray-600 dark:text-gray-400 text-xl leading-3 tracking-normal font-normal">Duration</p>
-                                        </div>
-                                    </div>
-                                </th>
-
-                            </tr>
-                        </thead>
-
-
-                        <tbody className="w-full">
-
-                            <tr className="h-20 text-sm leading-none text-gray-800 border-b border-t bg-white hover:bg-gray-100 border-gray-100">
-                                <td className="pl-4 cursor-pointer">
-                                    <div className="flex items-center">
-
-                                        <div className="pl-4">
-                                            <p className="font-medium">Citizenship</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td className="pl-12">
-                                    <p className="text-sm font-medium leading-none text-gray-800">School Students</p>
-                                    <div className="w-24 h-3 bg-gray-100 rounded-full mt-2">
-                                        <div className="w-6 h-3 bg-green-progress rounded-full" />
-                                    </div>
-                                </td>
-                                <td className="pl-20">
-                                    <p className="font-medium">$13,000</p>
-                                    <p className="text-xs leading-3 text-gray-600 mt-2">$4,200</p>
-                                </td>
-                                <td className="pl-20">
-                                    <p className="font-medium">22.12.21</p>
-                                    <p className="text-xs leading-3 text-gray-600 mt-2">Bi-Annually</p>
-                                </td>
-
-                            </tr>
-                            <tr className="h-20 text-sm leading-none text-gray-800 border-b border-t bg-white hover:bg-gray-100 border-gray-100">
-                                <td className="pl-4 cursor-pointer">
-                                    <div className="flex items-center">
-
-                                        <div className="pl-4">
-                                            <p className="font-medium">GPA 4.0</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td className="pl-12">
-                                    <p className="text-sm font-medium leading-none text-gray-800">University Students</p>
-                                    <div className="w-24 h-3 bg-gray-100 rounded-full mt-2">
-                                        <div className="w-6 h-3 bg-green-progress rounded-full" />
-                                    </div>
-                                </td>
-                                {/* <td className="pl-12">
-                                    <p className="font-medium">09/47</p>
-                                    <p className="text-xs leading-3 text-gray-600 mt-2">5 tasks pending</p>
-                                </td> */}
-                                <td className="pl-20">
-                                    <p className="font-medium">$13,000</p>
-                                    <p className="text-xs leading-3 text-gray-600 mt-2">$4,200</p>
-                                </td>
-                                <td className="pl-20">
-                                    <p className="font-medium">22.12.21</p>
-                                    <p className="text-xs leading-3 text-gray-600 mt-2">Bi-Annually</p>
-                                </td>
-
-                            </tr>
-                            <tr className="h-20 text-sm leading-none text-gray-800 border-b border-t bg-white hover:bg-gray-100 border-gray-100">
-                                <td className="pl-4 cursor-pointer">
-                                    <div className="flex items-center">
-
-                                        <div className="pl-4">
-                                            <p className="font-medium">Citizenship</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td className="pl-12">
-                                    <p className="text-sm font-medium leading-none text-gray-800">Research Students</p>
-                                    <div className="w-24 h-3 bg-gray-100 rounded-full mt-2">
-                                        <div className="w-6 h-3 bg-green-progress rounded-full" />
-                                    </div>
-                                </td>
-                                {/* <td className="pl-12">
-                                    <p className="font-medium">09/47</p>
-                                    <p className="text-xs leading-3 text-gray-600 mt-2">5 tasks pending</p>
-                                </td> */}
-                                <td className="pl-20">
-                                    <p className="font-medium">$13,000</p>
-                                    <p className="text-xs leading-3 text-gray-600 mt-2">$4,200</p>
-                                </td>
-                                <td className="pl-20">
-                                    <p className="font-medium">22.12.21</p>
-                                    <p className="text-xs leading-3 text-gray-600 mt-2">Bi-Annually</p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <br />
-            <br />
-            <div className="flex justify-center ">
-                <button
-                    className="bg-blue-500 active:bg-blue-900 uppercase text-white font-bold hover:shadow-md shadow text-xs px-6 py-4 rounded-full outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
-                    type="button"
+  console.log(paymentData);
+  return (
+    <>
+      <div className="w-full sm:px-6">
+        <div className="bg-white shadow px-4 md:px-10 pt-4 md:pt-7 pb-5 overflow-y-auto">
+          <h1 className="text-3xl text-center text-black">Your Donation</h1>
+          <br />
+          <hr />
+          <br />
+          <table className="w-full whitespace-nowrap">
+            <thead className="bg-gray-100">
+              <tr className="h-16 w-full text-sm leading-none text-gray-800">
+                <th className="font-normal text-center">
+                  <div className="relative flex justify-center items-center h-full">
+                    <div className="dark:bg-gray-800">
+                      <p className="px-3 py-3 text-gray-600 dark:text-gray-400 text-xl leading-3 tracking-normal font-normal">
+                        Name of Program
+                      </p>
+                    </div>
+                  </div>
+                </th>
+                <th className="font-normal text-center">
+                  <div className="relative flex justify-center items-center h-full">
+                    <div className="dark:bg-gray-800">
+                      <p className="px-3 py-3 text-gray-600 dark:text-gray-400 text-xl leading-3 tracking-normal font-normal">
+                        Amount You Donated
+                      </p>
+                    </div>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody className="w-full">
+              {paymentData.map((dataItem) => (
+                <tr
+                  className="h-20 text-sm leading-none text-gray-800 border-b border-t bg-white hover:bg-gray-100 border-gray-100"
+                  key={dataItem._id}
                 >
-                    Go To Fund
-                </button>
-            </div>
-        </>
-    );
+                  <td className="pl-4 cursor-pointer">
+                    <div className="flex items-center justify-center">
+                      <div className="pl-4">
+                        <p className="font-medium">Engineering Management</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="pl-12">
+                    <p className="text-sm font-medium leading-none text-gray-800 text-center">
+                      $ {dataItem.amountOfDonation}
+                    </p>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <br />
+      <br />
+      <div className="flex justify-center"></div>
+    </>
+  );
 }
 
 export default Inputs;

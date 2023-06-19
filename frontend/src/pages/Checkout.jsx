@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Checkout = () => {
   const id = useParams().id;
@@ -126,13 +126,14 @@ const Checkout = () => {
 
   const closeModal = () => {
     setIsModalVisible(false);
-    // window.location = "/Home";
+    navigate("/")
+    
   };
+    const navigate = useNavigate();
 
   // ! post payment info
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     // Validate input fields
     if (
       !isValidCardNumber ||
@@ -260,10 +261,7 @@ const Checkout = () => {
                     alt=""
                   />
                   <div className="ml-5">
-                    <span className="mt-2 font-semibold">
-                      Starter donation: Begin your giving journey with a small
-                      but meaningful gift.
-                    </span>
+                    <span className="mt-2 font-semibold">Starter donation</span>
                     <p className="text-slate-500 text-sm leading-6">200 JD</p>
                   </div>
                 </label>
@@ -289,8 +287,7 @@ const Checkout = () => {
                   />
                   <div className="ml-5">
                     <span className="mt-2 font-semibold">
-                      Significant contribution: Make a more substantial
-                      contribution to make a greater impact.
+                      Significant contribution
                     </span>
                     <p className="text-slate-500 text-sm leading-6">400JD</p>
                   </div>
@@ -317,8 +314,7 @@ const Checkout = () => {
                   />
                   <div className="ml-5">
                     <span className="mt-2 font-semibold">
-                      Transformative gift: Make a major contribution that can
-                      lead to significant change.
+                      Transformative gift
                     </span>
                     <p className="text-slate-500 text-sm leading-6">600 JD</p>
                   </div>
@@ -335,7 +331,7 @@ const Checkout = () => {
                   placeholder="Other Amount"
                 />
                 {isAmountSelectedError && (
-                  <p className="text-blue-500 text-sm mt-2">
+                  <p className="text-red-500 text-sm mt-2">
                     Please select a donation amount.
                   </p>
                 )}
@@ -343,8 +339,11 @@ const Checkout = () => {
               </div>
             </div>
           </div>
-          <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
+
+          <div className="mt-10 bg-white px-4 pt-8 lg:mt-0">
+            <br />
             <p className="text-xl font-medium">Payment Details</p>
+            <br /> <br />
             <p className="text-gray-400">
               Complete your donation by providing your payment details.
             </p>
@@ -363,7 +362,7 @@ const Checkout = () => {
                   className={`w-full rounded-md border ${
                     nameOnCard.length > 0 &&
                     (nameOnCard.length < 6 || nameOnCard.length > 20)
-                      ? "border-blue-500"
+                      ? "border-red-500"
                       : "border-gray-200"
                   } px-4 py-3 pl-11 text-sm uppercase shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500`}
                   placeholder="Your full name here"
@@ -373,7 +372,7 @@ const Checkout = () => {
                 />
                 {nameOnCard.length > 0 &&
                   (nameOnCard.length < 6 || nameOnCard.length > 20) && (
-                    <p className="text-blue-500 text-sm">
+                    <p className="text-red-500 text-sm">
                       Name must be between 6 and 20 characters
                     </p>
                   )}
@@ -411,7 +410,7 @@ const Checkout = () => {
                       className={`w-full rounded-md border border-gray-200 px-2 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500
                                             ${
                                               !isValidCardNumber
-                                                ? "border-blue-500"
+                                                ? "border-red-500"
                                                 : ""
                                             }`}
                       placeholder="xxxx-xxxx-xxxx-xxxx"
@@ -420,7 +419,7 @@ const Checkout = () => {
                       required
                     />
                     {!isValidCardNumber && (
-                      <p className="text-blue-500 text-sm ml-2">
+                      <p className="text-red-500 text-sm ml-2">
                         Please enter a valid 16-digit card number
                       </p>
                     )}
@@ -447,7 +446,7 @@ const Checkout = () => {
                       className={`w-full rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500
                                             ${
                                               !isValidExpirationDate
-                                                ? "ring-blue-500"
+                                                ? "ring-red-500"
                                                 : "ring-teal-500"
                                             }`}
                       placeholder="MM/YY"
@@ -456,7 +455,7 @@ const Checkout = () => {
                       required
                     />
                     {!isValidExpirationDate && (
-                      <p className="text-blue-500 text-sm mt-1">
+                      <p className="text-red-500 text-sm mt-1">
                         Please enter a valid expiration date
                       </p>
                     )}
@@ -468,7 +467,7 @@ const Checkout = () => {
                       className={`w-full rounded-md border border-gray-200 px-2 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500 
                                             ${
                                               !isValidSecurityCode
-                                                ? "border-blue-500"
+                                                ? "border-red-500"
                                                 : ""
                                             }`}
                       placeholder="CVC"
@@ -518,7 +517,7 @@ const Checkout = () => {
 
                   <div className="flex justify-center mt-8">
                     <button
-                      className="bg-blue-600 hover:bg-blue-700 focus:bg-blue-800 text-white rounded-lg px-6 py-3 font-semibold"
+                      className="bg-red-600 hover:bg-red-700 focus:bg-red-800 text-white rounded-lg px-6 py-3 font-semibold"
                       onClick={closeModal}
                       type="submit"
                     >

@@ -25,14 +25,19 @@ const RequiredAuth = () => {
   const isUserAuthorized =
     location.pathname === "/DonarProfile" && role === "donor";
   const isProviderAuthorized =
-    location.pathname === "/DonarProfile" && role === "student"; 
-    const isUserAuthorized1 =
+    location.pathname === "/DonarProfile" && role === "student";
+  const isUserAuthorized1 =
     location.pathname === "/EditProfile" && role === "donor";
   const isProviderAuthorized1 =
-    location.pathname === "/EditProfile" && role === "student";                                                    
-
+    location.pathname === "/EditProfile" && role === "student";
+  const istundent = location.pathname === "/Students" && role === "student";
   // Check if the user is authorized for the current route
-  const isAuthorized = isUserAuthorized || isProviderAuthorized ||isProviderAuthorized1|| isUserAuthorized1;
+  const isAuthorized =
+    isUserAuthorized ||
+    isProviderAuthorized ||
+    isProviderAuthorized1 ||
+    isUserAuthorized1 ||
+    istundent;
 
   return token && isAuthorized ? <Outlet /> : <Navigate to="/" />;
 };
