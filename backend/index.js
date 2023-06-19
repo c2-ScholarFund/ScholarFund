@@ -6,6 +6,8 @@ const { MONGO_URL, connectionParams } = require("./src/config/config");
 const contactRoutes = require('./src/routes/contactRoutes');
 const stuproblemRoutes = require('./src/routes/stuproblemRoutes');
 const payment = require("./src/routes/paymentInfo");
+const about = require("./src/routes/aboutusRoutes");
+
 
 
 const app = express();
@@ -59,4 +61,5 @@ app.listen(3100, () => {
  app.use('/prob' , stuproblemRoutes);
  app.use('/user' , userRoutes);
   app.use("/payment", payment);
+  app.use("/", about);
 

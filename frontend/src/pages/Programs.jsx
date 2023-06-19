@@ -33,15 +33,7 @@ const Programs = () => {
                                         Igniting the Spark of Knowledge and Creating Opportunities for a Brighter Future
                                     </p>
                                     <div className="flex flex-col sm:flex-row gap-4">
-                                        <button
-                                            type="button"
-                                            title="Start buying"
-                                            className="w-full py-3 px-6 rounded-xl text-center transition bg-red-500 hover:bg-red-800 active:bg-red-800 focus:bg-red-800 sm:w-max"
-                                        >
-                                            <span className="block text-white font-semibold">
-                                                Donate now
-                                            </span>
-                                        </button>
+                                    
                                         <button
                                             type="button"
                                             title="Start buying"

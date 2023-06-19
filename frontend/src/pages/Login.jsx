@@ -90,7 +90,7 @@ export default function Login() {
               <input
                 type="submit"
                 value="Login"
-                className="py-3 bg-green-500 text-white w-full rounded hover:bg-green-600 text-center"
+                className="py-3 bg-green-500 text-white w-full cursor-pointer rounded hover:bg-green-600 text-center"
                 style={{ backgroundColor: "#252B3F" }}
               />
             </div>

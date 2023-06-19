@@ -1,6 +1,5 @@
-
-import  { useState, useRef } from "react";
-import {  Link , useNavigate } from "react-router-dom";
+import { useState, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -51,7 +50,8 @@ export default function SignUp() {
         console.log(data);
       } else if (response.status === 409) {
         setShowAlert(true);
-        passErrorRef.current.textContent = "The email address is already in use.";
+        passErrorRef.current.textContent =
+          "The email address is already in use.";
       } else {
         setShowAlert(true);
         console.error("Registration failed");
@@ -60,7 +60,6 @@ export default function SignUp() {
       console.error("An error occurred:", error);
     }
   };
-
 
   const handleChange = (e) => {
     if (e.target.name === "email" && showAlert) {
@@ -117,7 +116,7 @@ export default function SignUp() {
               </label>
             </div>
           </div>
-            
+
           {showAlert && (
             <div className="mt-4 p-4 bg-red-200 text-red-800 rounded">
               The email address is already exist.
@@ -180,7 +179,7 @@ export default function SignUp() {
               <input
                 type="submit"
                 value="Sign up"
-                className="py-3 text-white w-full rounded hover:bg-green-600 text-center"
+                className="py-3 text-white w-full rounded cursor-pointer hover:bg-green-600 text-center"
                 style={{ backgroundColor: "#252B3F" }}
               />
             </div>
@@ -189,10 +188,7 @@ export default function SignUp() {
             <span className="block  p-5 text-center text-gray-800  text-xs ">
               Already have an account? Login
             </span>
-
           </Link>
-
-
         </div>
       </div>
     </>
