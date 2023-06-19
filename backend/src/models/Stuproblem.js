@@ -47,9 +47,11 @@ const problemSchema = new Schema({
   user_id: {
     type: String ,
     required: true
-
-
-  }
+  },
+  active: {
+      type: Boolean,
+      default: false,
+    },
 }, { timestamps: true });
 
 const Problem = mongoose.model('Problem', problemSchema);
