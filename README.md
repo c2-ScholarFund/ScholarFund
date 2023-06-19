@@ -59,3 +59,5 @@ Contributions to ScholarFund are welcome. If you would like to contribute, pleas
 Thank you for your interest in ScholarFund. Together, we can empower students worldwide!
 
 ## :computer: Links
+
+### ▷ [ Wireframe & MockUp](https://www.figma.com/file/dTrqPHWc0hgL10PzTUWiYl/Untitled?type=design&node-id=0-1)
