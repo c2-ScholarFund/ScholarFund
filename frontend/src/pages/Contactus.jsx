@@ -180,7 +180,7 @@ export default function ContactUs() {
                     <div>
                       <button
                         type="submit"
-                        className="bg-[#252B3F]  border-primary w-full rounded border p-3 text-white transition hover:bg-opacity-90"
+                        className="bg-[#252B3F]  border-primary-focusry w-full rounded border  p-3 text-white transition hover:bg-opacity-90"
                       >
                         Send Message
                       </button>

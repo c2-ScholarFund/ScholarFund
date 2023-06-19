@@ -1,16 +1,21 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import Logo from "../assets/images/logo.png";
-import jwtDecode from 'jwt-decode';
+import jwtDecode from "jwt-decode";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState("");
+  const [activeLink, setActiveLink] = useState("home");
+
+  const handleLinkClick = (link) => {
+    setActiveLink(link);
+  };
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
       // Decode the token to extract user information
       const decodedToken = jwtDecode(token);
@@ -27,7 +32,7 @@ export default function Navbar() {
 
   const handleLogout = () => {
     // Remove the token from localStorage
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
 
     // Update the login status
     setIsLoggedIn(false);
@@ -44,7 +49,10 @@ export default function Navbar() {
             <>
               <div className="flex items-center mr-4">
                 {/* Render user profile icon here */}
-                <Link to="/DonarProfile#" className="flex items-center mr-4 text-gray-900 dark:text-gray-400">
+                <Link
+                  to="/DonarProfile#"
+                  className="flex items-center mr-4 text-gray-900 dark:text-gray-400"
+                >
                   {/* Render user profile icon here */}
                   <FaUser className="w-6 h-6 text-gray-900 dark:text-gray-400" />
                 </Link>
@@ -103,8 +111,13 @@ export default function Navbar() {
             <li>
               <Link
                 to="/"
-                className="block py-2 pl-3 pr-4 text-gray-900 rounded md:bg-transparent md:text-red-600 md:p-0 md:dark:text-red-500"
+                className={
+                  activeLink === "home"
+                    ? "block py-2 pl-3 pr-4 text-red-600 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 underline"
+                    : "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline	"
+                }
                 aria-current="page"
+                onClick={() => handleLinkClick("home")}
               >
                 Home
               </Link>
@@ -112,7 +125,12 @@ export default function Navbar() {
             <li>
               <Link
                 to="AboutUs"
-                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                className={
+                  activeLink === "about"
+                    ? "block py-2 pl-3 pr-4 text-red-600 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 underline"
+                    : "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline	"
+                }
+                onClick={() => handleLinkClick("about")}
               >
                 About
               </Link>
@@ -120,7 +138,12 @@ export default function Navbar() {
             <li>
               <Link
                 to="ourPrograms"
-                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                className={
+                  activeLink === "OurPrograms"
+                    ? "block py-2 pl-3 pr-4 text-red-600 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 underline"
+                    : "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline	"
+                }
+                onClick={() => handleLinkClick("OurPrograms")}
               >
                 Our Programs
               </Link>
@@ -128,7 +151,12 @@ export default function Navbar() {
             <li>
               <Link
                 to="Studants"
-                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                className={
+                  activeLink === "OurStudents"
+                    ? "block py-2 pl-3 pr-4 text-red-600 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 underline"
+                    : "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline	"
+                }
+                onClick={() => handleLinkClick("OurStudents")}
               >
                 Our Students
               </Link>
@@ -136,7 +164,12 @@ export default function Navbar() {
             <li>
               <Link
                 to="contactus"
-                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                className={
+                  activeLink === "Contact"
+                    ? "block py-2 pl-3 pr-4 text-red-600 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 underline"
+                    : "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline	"
+                }
+                onClick={() => handleLinkClick("Contact")}
               >
                 Contact
               </Link>

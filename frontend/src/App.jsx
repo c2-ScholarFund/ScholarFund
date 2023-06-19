@@ -45,29 +45,24 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
-
         <Route path="sginup" element={<SignUp />} />
-        <Route path="Studants" element={<Students />} />
 
+        <Route path="Studants" element={<Students />} />
         <Route path="contactus" element={<Contactus />} />
         <Route path="AboutUs" element={<AboutUs />} />
-          <Route path="ourPrograms" element={<Programs />} /> 
-
-        <Route path="ourPrograms" element={<Programs/>} />
+        <Route path="ourPrograms" element={<Programs />} /> 
+    
         <Route path="programDetails/:id" element={<ProgramDetails/>} />
+
         <Route path="Checkout" element={<Checkout />} />
+        <Route path="Checkout/:id" element={<Checkout />} />
 
         <Route element={<RequiredAuth />}>
         <Route path="/DonarProfile" element={<DonarProfile />} /> 
         <Route path="/EditProfile" element={<EditProfile />} />
-
-        <Route path="Checkout/:id" element={<Checkout />} />
-        <Route path="edit" element={<EditProfile />} />
-
-
-
         <Route path="*" element={<Error10 />} />
-        
+        </Route>
+
       </Routes >
       <Footer />
     </BrowserRouter >

@@ -8,11 +8,11 @@ export default function Students() {
           <div className="lg:flex items-center justify-center lg:space-x-12 2xl:space-x-6">
             <div className>
               <p className="lg:text-4xl text-3xl font-extrabold leading-9 text-gray-800">
-                Why choose us
+                At ScholarFund,
               </p>
               <p className="text-lg leading-7 text-gray-600 mt-4 xl:w-7/12 w-full">
-                Whether article spirits new her covered hastily sitting her.
-                Money witty books nor son add
+                ScholarFund strives to alleviate challenges and fuel
+                transformative education for students. Funding opportunities
               </p>
               <div className="lg:hidden lg:w-3/5 xl:w-3/5 w-full lg:mt-0 mt-6">
                 <img
