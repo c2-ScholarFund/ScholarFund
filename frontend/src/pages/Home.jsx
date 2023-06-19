@@ -1,4 +1,5 @@
 import Cardhomepage from "../components/Cardhomepage";
+import CardsHomePage from "../components/CardsHomePage";
 import CtaHomepage from "../components/CtaHomepage";
 import HeroHomepage from "../components/HeroHomepage";
 
@@ -7,6 +8,7 @@ export default function HeroSection() {
     <>
   
       <HeroHomepage/>
+      <CardsHomePage/>
       <Cardhomepage/>
       <CtaHomepage/>
       

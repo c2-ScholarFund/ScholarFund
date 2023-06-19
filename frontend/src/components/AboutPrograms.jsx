@@ -24,14 +24,7 @@ const AboutPrograms = () => {
                             <p className="my-8 text-gray-600 dark:text-gray-300">
                                 we take pride in our remarkable success in providing top-notch education and empowering students worldwide. With a proven track record of excellence, we have helped countless learners unlock their full potential and achieve academic greatness. Our dedicated team of experienced educators and innovative curriculum ensure that every student receives personalized attention and the highest quality of instruction. Join us on this exciting journey of educational success, where your dreams become realities and your aspirations know no bounds.
                             </p>
-                            <a
-                                href="/"
-                                className="relative flex h-12 w-full items-center justify-center px-8 before:absolute before:inset-0 before:rounded-full before:bg-sky-100 before:bg-gradient-to-b before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 dark:before:bg-gray-800 sm:w-max"
-                            >
-                                <span className="relative text-base font-semibold text-sky-600 dark:text-white">
-                                    Browse now
-                                </span>
-                            </a>
+                         
                         </div>
                     </div>
                 </div>

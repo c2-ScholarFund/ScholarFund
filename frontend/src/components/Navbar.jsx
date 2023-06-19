@@ -60,7 +60,7 @@ export default function Navbar() {
               <button
                 type="button"
                 className="text-white focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0"
-                style={{ backgroundColor: "#CF1A45" }}
+                style={{ backgroundColor: "#1A56DB" }}
                 onClick={handleLogout}
               >
                 Logout
@@ -71,7 +71,7 @@ export default function Navbar() {
               <button
                 type="button"
                 className="text-white focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0"
-                style={{ backgroundColor: "#CF1A45" }}
+                style={{ backgroundColor: "#1A56DB" }}
               >
                 Join Us
               </button>
@@ -113,8 +113,8 @@ export default function Navbar() {
                 to="/"
                 className={
                   activeLink === "home"
-                    ? "block py-2 pl-3 pr-4 text-red-600 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 underline"
-                    : "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline	"
+                    ? "block py-2 pl-3 pr-4 text-[#1A56DB] rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1A56DB] md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 underline"
+                    : "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1A56DB] md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline	"
                 }
                 aria-current="page"
                 onClick={() => handleLinkClick("home")}
@@ -124,24 +124,11 @@ export default function Navbar() {
             </li>
             <li>
               <Link
-                to="AboutUs"
-                className={
-                  activeLink === "about"
-                    ? "block py-2 pl-3 pr-4 text-red-600 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 underline"
-                    : "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline	"
-                }
-                onClick={() => handleLinkClick("about")}
-              >
-                About
-              </Link>
-            </li>
-            <li>
-              <Link
                 to="ourPrograms"
                 className={
                   activeLink === "OurPrograms"
-                    ? "block py-2 pl-3 pr-4 text-red-600 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 underline"
-                    : "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline	"
+                    ? "block py-2 pl-3 pr-4 text-[#1A56DB] rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1A56DB] md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 underline"
+                    : "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1A56DB] md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline	"
                 }
                 onClick={() => handleLinkClick("OurPrograms")}
               >
@@ -153,8 +140,8 @@ export default function Navbar() {
                 to="Studants"
                 className={
                   activeLink === "OurStudents"
-                    ? "block py-2 pl-3 pr-4 text-red-600 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 underline"
-                    : "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline	"
+                    ? "block py-2 pl-3 pr-4 text-[#1A56DB] rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1A56DB] md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 underline"
+                    : "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1A56DB] md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline	"
                 }
                 onClick={() => handleLinkClick("OurStudents")}
               >
@@ -163,11 +150,24 @@ export default function Navbar() {
             </li>
             <li>
               <Link
+                to="AboutUs"
+                className={
+                  activeLink === "about"
+                    ? "block py-2 pl-3 pr-4 text-[#1A56DB] rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1A56DB] md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 underline"
+                    : "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1A56DB] md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline	"
+                }
+                onClick={() => handleLinkClick("about")}
+              >
+                About
+              </Link>
+            </li>
+            <li>
+              <Link
                 to="contactus"
                 className={
                   activeLink === "Contact"
-                    ? "block py-2 pl-3 pr-4 text-red-600 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 underline"
-                    : "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline	"
+                    ? "block py-2 pl-3 pr-4 text-[#1A56DB] rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1A56DB] md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 underline"
+                    : "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1A56DB] md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 no-underline	"
                 }
                 onClick={() => handleLinkClick("Contact")}
               >
