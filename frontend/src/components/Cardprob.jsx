@@ -59,8 +59,8 @@ export default function Cardprob() {
                     <p className="mr-2 text-lg font-semibold text-gray-900 dark:text-white">
                       Raised:
                     </p>
-                    <p className="text-base font-medium text-gray-500 line-through dark:text-gray-300">
-                      {problem.raised}
+                    <p className="text-base font-medium text-gray-500  dark:text-gray-300">
+                      ${problem.raised}
                     </p>
                     <p className="ml-auto text-base font-medium text-green-500">
                       Amount: ${problem.amount}

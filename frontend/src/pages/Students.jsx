@@ -11,8 +11,7 @@ export default function Students() {
                 At ScholarFund,
               </p>
               <p className="text-lg leading-7 text-gray-600 mt-4 xl:w-7/12 w-full">
-                ScholarFund strives to alleviate challenges and fuel
-                transformative education for students. Funding opportunities
+              ScholarFund strives to alleviate challenges and fuel transformative education for students. Funding opportunities
               </p>
               <div className="lg:hidden lg:w-3/5 xl:w-3/5 w-full lg:mt-0 mt-6">
                 <img

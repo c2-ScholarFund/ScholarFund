@@ -32,4 +32,17 @@ const getproblem = async (req, res) => {
   }
 };
 
-module.exports = { getproblem };
+const getpayment = async (req, res) => {
+  try {
+    // Fetch data from the database
+    const data = await Data.find({});
+
+    res.json(data);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "An error occurred while fetching the data" });
+  }
+};
+
+module.exports = { getproblem, getpayment };

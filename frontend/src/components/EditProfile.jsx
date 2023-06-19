@@ -1,58 +1,62 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import jwtDecode from 'jwt-decode';
+import  { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 
-import axios from 'axios';
+import axios from "axios";
 
 const EditProfile = () => {
-    const navigate = useNavigate();
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [username, setUsername] = useState('');
-    const [images, setImages] = useState([]);
-  
-    const handleClick = () => {
-      navigate('/DonarProfile');
-    };
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-      
-        try {
-          const token = localStorage.getItem('token');
-          const decodedToken = jwtDecode(token);
-          const userId = decodedToken.user_id;
-      
-          // Create a FormData object
-          const formData = new FormData();
-          formData.append('email', email);
-          formData.append('username', username);
-          formData.append('firstname', firstName);
-          formData.append('lastname', lastName);
-          for (let i = 0; i < images.length; i++) {
-            formData.append('images', images[i]);
-          }
-      
-          // Convert formData to JSON string
-          const formDataJson = JSON.stringify(Object.fromEntries(formData));
-      
-          // Make an HTTP POST request to the server
-          const response = await axios.post(`http://localhost:3100/user/update/${userId}`, formDataJson, {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          });
-      
-          // Handle the response from the server
-          console.log(response.data); // You can do something with the response if needed
-      
-          // Redirect the user to the desired page
-          navigate('/DonarProfile');
-        } catch (error) {
-          console.error(error);
-          // Handle any errors that occurred during the request
+  const navigate = useNavigate();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [images, setImages] = useState([]);
+
+  const handleClick = () => {
+    navigate("/DonarProfile");
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const token = localStorage.getItem("token");
+      const decodedToken = jwtDecode(token);
+      const userId = decodedToken.user_id;
+
+      // Create a FormData object
+      const formData = new FormData();
+      formData.append("email", email);
+      formData.append("username", username);
+      formData.append("firstname", firstName);
+      formData.append("lastname", lastName);
+      for (let i = 0; i < images.length; i++) {
+        formData.append("images", images[i]);
+      }
+
+      // Convert formData to JSON string
+      const formDataJson = JSON.stringify(Object.fromEntries(formData));
+
+      // Make an HTTP POST request to the server
+      const response = await axios.post(
+        `http://localhost:3100/user/update/${userId}`,
+        formDataJson,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      };
+      );
+
+      // Handle the response from the server
+      console.log(response.data); // You can do something with the response if needed
+
+      // Redirect the user to the desired page
+      navigate("/DonarProfile");
+    } catch (error) {
+      console.error(error);
+      // Handle any errors that occurred during the request
+    }
+  };
 
   return (
     <>
@@ -170,19 +174,6 @@ const EditProfile = () => {
                       />
                     </div>
                   </div>
-                  <label
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    htmlFor="multiple_files"
-                  >
-                    Upload multiple files
-                  </label>
-                  <input
-                    className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                    id="multiple_files"
-                    type="file"
-                    multiple=""
-                    onChange={(e) => setImages(e.target.files)}
-                  />
                 </div>
               </div>
 
@@ -191,7 +182,7 @@ const EditProfile = () => {
 
                 <div className="flex justify-center border-b">
                   <button
-                    className="bg-blue-500 active:bg-blue-900 uppercase text-white font-bold hover:shadow-md shadow text-xs px-6 py-4 rounded-full outline-none focus:outline-none sm:mr-2 mb-5 ease-linear transition-all duration-150"
+                    className="bg-red-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-6 py-4 rounded-full outline-none focus:outline-none sm:mr-2 mb-5 ease-linear transition-all duration-150"
                     type="button"
                     onClick={handleClick}
                   >
