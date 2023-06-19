@@ -5,6 +5,7 @@ import education from "../assets/images/education.jpg";
 import profilePict from "../assets/images/profilePict.jpg";
 import Inputs from "../components/History";
 import Helpform from "../components/Helpform";
+import { FaUser } from 'react-icons/fa';
 
 const DonarProfile = () => {
   const [user, setUser] = useState(null);
@@ -67,18 +68,17 @@ const DonarProfile = () => {
               <div className="px-6">
                 <div className="flex flex-wrap justify-center">
                   <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
+                
                     <div className="relative">
-                      <img
-                        alt="..."
-                        src={profilePict}
-                        className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-20 max-w-150-px"
-                      />
+                    <br/>
+                    <FaUser className="w-32 h-32 rounded-full mx-auto text-gray-500" />
+
                     </div>
                   </div>
                   <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
                     <div className="py-6 px-3 mt-32 sm:mt-0">
                       <Link
-                        to="/edit"
+                        to="/EditProfile"
                         className="bg-red-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-6 py-4 rounded-full outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                       >
                         Edit Profile
@@ -86,6 +86,7 @@ const DonarProfile = () => {
                     </div>
                   </div>
                   <div className="w-full lg:w-4/12 px-4 lg:order-1">
+                  <br/>
                     <div className="flex justify-center py-4 lg:pt-4 pt-8">
                       <div className="mr-4 p-3 text-center">
                         <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">

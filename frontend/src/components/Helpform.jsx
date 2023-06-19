@@ -35,7 +35,7 @@ export default function Helpform() {
     formData.append("amount", amount);
     formData.append("program", program);
     formData.append("problemDescription", problemDescription);
-    formData.append("user_id", User);
+    formData.append("user_id", User.user_id);
   
     for (let i = 0; i < images.length; i++) {
       formData.append("images", images[i]);
@@ -294,7 +294,7 @@ export default function Helpform() {
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                       htmlFor="multiple_files"
                     >
-                      Upload images:
+                      Upload Letters of Recommendation , Cv , passport  (images) :
                     </label>
                     <input
                       className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-500 dark:focus:border-gray-500 dark:focus:shadow-outline-gray form-input"
