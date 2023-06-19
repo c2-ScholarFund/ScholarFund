@@ -116,12 +116,6 @@ export default function SignUp() {
               </label>
             </div>
           </div>
-
-          {showAlert && (
-            <div className="mt-4 p-4 bg-red-200 text-red-800 rounded">
-              The email address is already exist.
-            </div>
-          )}
           <form action="#" className="p-0" onSubmit={handleSubmit}>
             <div className="mt-5">
               <input
@@ -179,16 +173,23 @@ export default function SignUp() {
               <input
                 type="submit"
                 value="Sign up"
-                className="py-3 text-white w-full rounded cursor-pointer hover:bg-green-600 text-center"
+                className="py-3 text-white w-full rounded hover:bg-green-600 text-center cursor-pointer"
                 style={{ backgroundColor: "#252B3F" }}
               />
             </div>
           </form>
           <Link to="/login">
-            <span className="block  p-5 text-center text-gray-800  text-xs ">
-              Already have an account? Login
+            <span className="block  p-5 text-center text-gray-800  text-l ">
+              Already have an account ?
+              <span className="text-l text-blue-600 "> Login</span>
             </span>
           </Link>
+
+          {showAlert && (
+            <div className="mt-4 p-4 bg-red-200 text-red-800 rounded">
+              The email address is already in use.
+            </div>
+          )}
         </div>
       </div>
     </>
