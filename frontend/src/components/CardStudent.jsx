@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Progress } from "@material-tailwind/react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function CardStudent() {
   
@@ -26,9 +27,10 @@ export default function CardStudent() {
   };
 
   return (
-    <div className="flex flex-wrap justify-center px-40">
+    <div className="flex flex-wrap justify-center px-30">
       {Problems?.map(problem=>(
-                      <div className="w-80 mx-10 mb-10 scale-y-95 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <>
+                      <div key={problem._id} className="w-80 mx-10 mb-10 scale-y-95 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                       <a href="#">
                         <img
                           className="rounded-t-lg h-60"
@@ -55,7 +57,7 @@ export default function CardStudent() {
                         </h5>
                         <hr />
                         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                          {problem?.problemDescription}
+                          {problem?.program}
                         </p>
                         <div className="flex justify-between">
                           <a
@@ -64,16 +66,17 @@ export default function CardStudent() {
                           >
                             Read more
                           </a>
-                          <a
-                            href="#"
+                          <Link
+                            to={`/Checkout/${problem._id}`}
                             className="inline-flex items-center px-8 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                           >
                             Donate Now
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
 
+    </>
       ))}
 
     </div>

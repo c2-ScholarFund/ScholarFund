@@ -41,7 +41,7 @@ function App() {
     // testing
     <BrowserRouter>
       {currentPath !== "/DonarProfile" && <Navbar />}
- <ScrollToTop />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
@@ -51,14 +51,21 @@ function App() {
 
         <Route path="contactus" element={<Contactus />} />
         <Route path="AboutUs" element={<AboutUs />} />
-        {/* <Route path="ourPrograms" element={<Programs />} /> */}
+          <Route path="ourPrograms" element={<Programs />} /> 
+
         <Route path="ourPrograms" element={<Programs/>} />
         <Route path="programDetails/:id" element={<ProgramDetails/>} />
         <Route path="Checkout" element={<Checkout />} />
+
         <Route element={<RequiredAuth />}>
         <Route path="/DonarProfile" element={<DonarProfile />} /> 
         <Route path="/EditProfile" element={<EditProfile />} />
-      </Route>
+
+        <Route path="Checkout/:id" element={<Checkout />} />
+        <Route path="edit" element={<EditProfile />} />
+
+
+
         <Route path="*" element={<Error10 />} />
         
       </Routes >

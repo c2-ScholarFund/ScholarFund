@@ -2,10 +2,12 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const { jwtGenerator } = require('../utils/jwtGenerator');
 const User = require('../models/user');
+
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
+
 
 // Register route
 const signup = async (req, res) => {

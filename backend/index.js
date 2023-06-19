@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const { MONGO_URL, connectionParams } = require("./src/config/config");
 const contactRoutes = require('./src/routes/contactRoutes');
 const stuproblemRoutes = require('./src/routes/stuproblemRoutes');
+const payment = require("./src/routes/paymentInfo");
+
 
 const app = express();
 const Data = require('./src/models/data'); // Import the Data model
@@ -28,10 +30,10 @@ mongoose
 
 // ! POST payment info ~~~ Mais
 app.post('/api/data', (req, res) => {
-  const { cardNumber, nameOnCard, securityCode, expirationDate, amountOfDonation } = req.body;
+  const { cardNumber, nameOnCard, securityCode, expirationDate, amountOfDonation,  user_id } = req.body;
 
   // Create a new instance of the Data model with the submitted data
-  const newData = new Data({ cardNumber, nameOnCard, securityCode, expirationDate, amountOfDonation });
+  const newData = new Data({ cardNumber, nameOnCard, securityCode, expirationDate, amountOfDonation, user_id });
 
   // Save the new data to the database
   newData.save()
@@ -56,4 +58,5 @@ app.listen(3100, () => {
  app.use('/contacts', contactRoutes);
  app.use('/prob' , stuproblemRoutes);
  app.use('/user' , userRoutes);
+  app.use("/payment", payment);
 

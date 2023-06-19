@@ -2,14 +2,11 @@ import { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-
-function ContactUs() 
-{
+export default function ContactUs() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -21,12 +18,9 @@ function ContactUs()
       phone,
       message,
     };
-    
+
     try {
-      const response = await axios.post(
-        "http://localhost:3100/contacts",
-        contactMessage
-      );
+      const response = await axios.post("http://localhost:3100/contacts",contactMessage);
 
       if (response.status === 201) {
         Swal.fire("Success", "Message sent successfully!", "success");
@@ -56,22 +50,19 @@ function ContactUs()
         <div className="flex items-center justify-center h-full bg-black bg-opacity-50">
           <div className="text-center">
             <h1 className="text-4xl font-bold text-white mb-4">Contact Us</h1>
-
-          
           </div>
         </div>
       </div>
 
-      <div
-        className=""
-       
-      >
-        <section className="relative z-10 overflow-hidden bg-white py-20 lg:py-[120px]"
-        >
+      <div className="">
+        <section className="relative z-10 overflow-hidden bg-white py-20 lg:py-[120px]">
           <div className="container mx-auto">
             <div className="mx-4 flex flex-wrap lg:justify-between">
               <div className="w-full  lg:w-1/2 xl:w-6/12">
-                <div className="mb-12 max-w-[570px] lg:mb-0" style={{ marginRight: "60px", marginLeft: "65px" }}>
+                <div
+                  className="mb-12 max-w-[570px] lg:mb-0"
+                  style={{ marginRight: "60px", marginLeft: "65px" }}
+                >
                   <h2 className="text-dark mb-6 text-[32px] font-bold uppercase sm:text-[40px] lg:text-[36px] xl:text-[40px]">
                     GET IN TOUCH WITH US
                   </h2>
@@ -95,8 +86,7 @@ function ContactUs()
                         Our Location
                       </h4>
                       <p className="text-body-color text-base">
-                      New York, NY, USA
-
+                        New York, NY, USA
                       </p>
                     </div>
                   </div>
@@ -118,7 +108,7 @@ function ContactUs()
                         Phone Number
                       </h4>
                       <p className="text-body-color text-base">
-                      (+44) 79 4757 0472
+                        (+44) 79 4757 0472
                       </p>
                     </div>
                   </div>
@@ -153,7 +143,8 @@ function ContactUs()
                         placeholder="Your Name"
                         className="text-body-color border-[f0f0f0] focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none shadow-md transition duration-300"
                         value={name}
-                        onChange={(event) => setName(event.target.value)} required
+                        onChange={(event) => setName(event.target.value)}
+                        required
                       />
                     </div>
                     <div className="mb-6">
@@ -162,7 +153,8 @@ function ContactUs()
                         placeholder="Your Email"
                         className="text-body-color border-[f0f0f0] focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none shadow-md transition duration-300"
                         value={email}
-                        onChange={(event) => setEmail(event.target.value)} required
+                        onChange={(event) => setEmail(event.target.value)}
+                        required
                       />
                     </div>
                     <div className="mb-6">
@@ -171,7 +163,8 @@ function ContactUs()
                         placeholder="Your Phone"
                         className="text-body-color border-[f0f0f0] focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none shadow-md transition duration-300"
                         value={phone}
-                        onChange={(event) => setPhone(event.target.value)} required
+                        onChange={(event) => setPhone(event.target.value)}
+                        required
                       />
                     </div>
                     <div className="mb-6">
@@ -180,7 +173,8 @@ function ContactUs()
                         placeholder="Your Message"
                         className="text-body-color border-[f0f0f0] focus:border-primary w-full resize-none rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none shadow-md transition duration-300"
                         value={message}
-                        onChange={(event) => setMessage(event.target.value)} required
+                        onChange={(event) => setMessage(event.target.value)}
+                        required
                       />
                     </div>
                     <div>
@@ -194,7 +188,6 @@ function ContactUs()
                   </form>
 
                   <div>
-               
                     <span className="absolute -right-10 top-[90px] z-[-1]">
                       <svg
                         width={34}
@@ -995,5 +988,3 @@ function ContactUs()
     </div>
   );
 }
-
-export default ContactUs;

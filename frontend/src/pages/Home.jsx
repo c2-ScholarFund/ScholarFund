@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function HeroSection() {
   return (
     <>
@@ -40,12 +42,12 @@ export default function HeroSection() {
                 
                 </div>
                 <div>
-                  <a
-                    href="#"
+                  <Link
+                    to="Checkout"
                     className="inline-flex bg-white items-center justify-center px-7 py-2 text-bold font-medium text-center text-red-600 border border-gray-300 rounded-sm hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
                   >
                     Donate Now
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

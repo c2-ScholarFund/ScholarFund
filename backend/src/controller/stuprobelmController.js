@@ -86,7 +86,39 @@ const getproblem = async (req, res) => {
   }
 };
 
+const getproblemById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    // Retrieve all problems from the database
+    const problems = await Problem.findById(id)
+      .select({ raised: 1 })
+      .then((problem) => {
+        console.log(problem);
+        res.status(200).json(problem);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  } catch (error) {
+    console.error("An error occurred while retrieving problems", error);
+    res
+      .status(500)
+      .json({ error: "An error occurred while retrieving problems" });
+  }
+};
+
+const updateProblem = async (req, res) => {
+  const id = req.params.id;
+  const problems = await Problem.updateMany(
+    { _id: id },
+    { $set: { raised: req.body.raised } }
+  );
+  res.status(200).json(problems);
+};
+
 module.exports = {
   addproblem,
-  getproblem
+  getproblem,
+  getproblemById,
+  updateProblem,
 };
