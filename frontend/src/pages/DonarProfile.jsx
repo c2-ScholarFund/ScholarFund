@@ -55,7 +55,11 @@ const DonarProfile = () => {
       <main className="profile-page">
         <section className="relative block h-500-px">
           <div className="absolute top-0 w-full h-full bg-center bg-cover">
-            <img src={education} alt="" className="absolute top-0 w-full h-full bg-center bg-cover" />
+            <img
+              src={education}
+              alt=""
+              className="absolute top-0 w-full h-full bg-center bg-cover"
+            />
             <span
               id="blackOverlay"
               className="w-full h-full absolute opacity-50 bg-black"
@@ -68,43 +72,47 @@ const DonarProfile = () => {
               <div className="px-6">
                 <div className="flex flex-wrap justify-center">
                   <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
-                
                     <div className="relative">
-                    <br/>
-                    <FaUser className="w-32 h-32 rounded-full mx-auto text-gray-500" />
-
+                      <br />
+                      <FaUser className="w-32 h-32 rounded-full mx-auto text-gray-500" />
                     </div>
                   </div>
                   <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
                     <div className="py-6 px-3 mt-32 sm:mt-0">
                       <Link
                         to="/EditProfile"
-                        className="bg-red-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-6 py-4 rounded-full outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
+                        className="bg-blue-500 active:bg-blue-900 uppercase text-white font-bold hover:shadow-md shadow text-xs px-6 py-4 rounded-full outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150"
                       >
                         Edit Profile
                       </Link>
                     </div>
                   </div>
                   <div className="w-full lg:w-4/12 px-4 lg:order-1">
-                  <br/>
+                    <br />
                     <div className="flex justify-center py-4 lg:pt-4 pt-8">
                       <div className="mr-4 p-3 text-center">
                         <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
                           22
                         </span>
-                        <span className="text-sm text-blueGray-400">Full Scholarships</span>
+                        <span className="text-sm text-blueGray-400">
+                          Full Scholarships
+                        </span>
                       </div>
                       <div className="mr-4 p-3 text-center">
                         <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
                           10
                         </span>
-                        <span className="text-sm text-blueGray-400">Partial Scholarships</span>
+                        <span className="text-sm text-blueGray-400">
+                          Partial Scholarships
+                        </span>
                       </div>
                       <div className="lg:mr-4 p-3 text-center">
                         <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
                           89
                         </span>
-                        <span className="text-sm text-blueGray-400">Overall Beneficiers</span>
+                        <span className="text-sm text-blueGray-400">
+                          Overall Beneficiers
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -123,68 +131,84 @@ const DonarProfile = () => {
                   </div>
                 </div>
                 <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
-                 
-                <div className="flex justify-center">
-                <div className="w-full bg-white p-10">
-                    <h1 tabIndex={0} role="heading" aria-label="profile information" className="focus:outline-none text-3xl font-bold text-gray-800 mt-12">
-                       Profile info
-                    </h1>
-                    <div className="mt-8 md:flex md:flex-wrap md:justify-between">
+                  <div className="flex justify-center">
+                    <div className="w-full bg-white p-10">
+                      <h1
+                        tabIndex={0}
+                        role="heading"
+                        aria-label="profile information"
+                        className="focus:outline-none text-3xl font-bold text-gray-800 mt-12"
+                      >
+                        Profile info
+                      </h1>
+                      <div className="mt-8 md:flex md:flex-wrap md:justify-between">
                         <div className="flex flex-col mb-8 md:w-64">
-                            <label className="mb-3 text-lg leading-none text-gray-800">First name</label>
-                            <p className="bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200">
+                          <label className="mb-3 text-lg leading-none text-gray-800">
+                            First name
+                          </label>
+                          <p className="bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200">
                             {user && user.firstname}
-                            </p>
+                          </p>
                         </div>
                         <div className="flex flex-col mb-8 md:w-64">
-                            <label className="mb-3 text-lg leading-none text-gray-800">Last name</label>
-                            <p className="bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200">
+                          <label className="mb-3 text-lg leading-none text-gray-800">
+                            Last name
+                          </label>
+                          <p className="bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200">
                             {user && user.lastname}
-                            </p>
+                          </p>
                         </div>
                         <div className="flex flex-col mb-8 md:w-64">
-                            <label className="mb-3 text-lg leading-none text-gray-800">City</label>
-                            <p className="bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200">
-                                Zarqa
-                            </p>
+                          <label className="mb-3 text-lg leading-none text-gray-800">
+                            City
+                          </label>
+                          <p className="bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200">
+                            Zarqa
+                          </p>
                         </div>
                         <div className="flex flex-col mb-8 md:w-64">
-                            <label className="mb-3 text-lg leading-none text-gray-800">Address</label>
-                            <p className="bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200">
+                          <label className="mb-3 text-lg leading-none text-gray-800">
+                            Address
+                          </label>
+                          <p className="bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200">
                             Zarqa/108-12
-                            </p>
+                          </p>
                         </div>
                         <div className="flex flex-col mb-8 md:w-64">
-                            <label className="mb-3 text-lg leading-none text-gray-800">Email Address</label>
-                            <p className="bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200">
+                          <label className="mb-3 text-lg leading-none text-gray-800">
+                            Email Address
+                          </label>
+                          <p className="bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200">
                             {user && user.email}
-                            </p>
+                          </p>
                         </div>
                         <div className="flex flex-col mb-8 md:w-64">
-                            <label className="mb-3 text-lg leading-none text-gray-800">Phone number</label>
-                            <p className="bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200">
+                          <label className="mb-3 text-lg leading-none text-gray-800">
+                            Phone number
+                          </label>
+                          <p className="bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200">
                             +96278536908
-                            </p>
+                          </p>
                         </div>
                         <div className="flex flex-col mb-8 md:w-64">
-                            <label className="mb-3 text-lg leading-none text-gray-800">Phone number</label>
-                            <p className="bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200">
+                          <label className="mb-3 text-lg leading-none text-gray-800">
+                            Phone number
+                          </label>
+                          <p className="bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200">
                             +96278536908
-                            </p>
+                          </p>
                         </div>
                         <div className="flex flex-col mb-8 md:w-64">
-                            <label className="mb-3 text-lg leading-none text-gray-800">Phone number</label>
-                            <p className="bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200">
+                          <label className="mb-3 text-lg leading-none text-gray-800">
+                            Phone number
+                          </label>
+                          <p className="bg-gray-100 text-sm font-medium leading-none text-gray-800 p-3 border rounded border-gray-200">
                             +96278536908
-                            </p>
+                          </p>
                         </div>
+                      </div>
                     </div>
-                </div>
-            </div>
-    
-
-
-
+                  </div>
                 </div>
               </div>
             </div>
@@ -197,8 +221,8 @@ const DonarProfile = () => {
             </div>
           </footer>
 
-          {role === "student" ? <Helpform/> : null}
-          {role === "donor" ? <Inputs/> : null}
+          {role === "student" ? <Helpform /> : null}
+          {role === "donor" ? <Inputs /> : null}
         </section>
       </main>
     </>
