@@ -23,6 +23,10 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    images: {
+        type: [Buffer],
+       
+      },
     role: {
         type: String,
         required: true

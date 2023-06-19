@@ -11,6 +11,6 @@ router.get("/checkToken", usercontroller.authenticateToken, (req, res) => {
   } )
 
 router.get('/getdata/:id', usercontroller.getUser);
-
+router.post('/update/:id', usercontroller.updateUser);
 
 module.exports = router;
