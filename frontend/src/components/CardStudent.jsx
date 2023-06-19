@@ -4,10 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 export default function CardStudent() {
-  
-  const [raised, setRaised] = useState(5000);
-  const [goal, setGoal] = useState(10000);
-  const [Problems, setProblems] = useState();
+  const [Problems, setProblems] = useState([]);
 
   useEffect(() => {
     fetchProblems();
@@ -15,11 +12,8 @@ export default function CardStudent() {
 
   const fetchProblems = async () => {
     try {
-      const response = await axios.get("http://localhost:3100/prob/getproblem")
-      .then(response => {setProblems(response.data)
-        console.log(Problems)})
-      
-      
+      const response = await axios.get("http://localhost:3100/prob/getproblem");
+      setProblems(response.data);
     } catch (error) {
       console.error("An error occurred while fetching problems", error);
       // Handle error state or display error message
@@ -28,22 +22,26 @@ export default function CardStudent() {
 
   return (
     <div className="flex flex-wrap justify-center px-30">
-      {Problems?.map((problem) => (
-        <>
+      {Problems.map((problem) => {
+        if (!problem.active) {
+          return null; // Don't render the card if active is false
+        }
+
+        return (
           <div
             key={problem._id}
             className="w-80 mx-10 mb-10 scale-y-95 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
           >
             <Link to={`/Checkout/${problem._id}`}>
               <img
-                className="rounded-t-lg h-60 "
+                className="rounded-t-lg h-60"
                 src={problem.images[0]}
-                alt={problem?.fullname}
+                alt={problem.fullname}
               />
             </Link>
             <div className="flex w-full flex-col gap-4 p-3">
               <Progress
-                value={Math.ceil((problem?.raised / problem?.amount) * 100)}
+                value={Math.ceil((problem.raised / problem.amount) * 100)}
                 size="lg"
                 label="."
                 color="red"
@@ -51,20 +49,20 @@ export default function CardStudent() {
             </div>
             <div className="flex justify-between">
               <small className="text-gray-600 ms-5">
-                Raised :{problem?.raised}${" "}
+                Raised: ${problem.raised}{" "}
               </small>
               <small className="text-gray-600 me-5">
-                Goal :{problem?.amount}${" "}
+                Goal: ${problem.amount}{" "}
               </small>
             </div>
 
             <div className="p-5">
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white flex justify-items justify-center">
-                {problem?.fullname}
+                {problem.fullname}
               </h5>
               <hr />
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 flex justify-items justify-center">
-                {problem?.program}
+                {problem.program}
               </p>
               <div className="flex justify-items justify-center">
                 <Link
@@ -76,8 +74,8 @@ export default function CardStudent() {
               </div>
             </div>
           </div>
-        </>
-      ))}
+        );
+      })}
     </div>
   );
 }
